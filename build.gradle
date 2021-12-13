@@ -1,0 +1,95 @@
+plugins {
+    id 'java-library-distribution'
+    id 'jacoco'
+    id 'maven-publish'
+}
+
+group = 'com.github.CST-Group'
+
+description = "CST is the Cognitive Systems Toolkit, a toolkit for the construction of Cognitive Systems and Cognitive Architectures"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+version = '1.0.0'
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+    mavenCentral()
+    maven {
+        url "https://github.com/rosjava/rosjava_mvn_repo/raw/master"
+    }
+    maven {
+        url "https://repository.springsource.com/maven/bundles/release"
+    }
+    maven {
+        url "https://repository.springsource.com/maven/bundles/external"
+    }
+    maven { url 'https://jitpack.io' }
+}
+
+configurations {
+    extraLibs
+}
+
+dependencies {
+    api('com.github.CST-Group:cst:0.8.0')
+
+    api 'com.soartech:jsoar-core:4.1.0'
+    api 'com.soartech:jsoar-debugger:4.1.0'
+    //api 'org.ros.rosjava_core:rosjava:0.3.6'
+    //implementation 'com.github.rosjava:rosjava_core:0.3.7'
+    api 'com.github.rosjava:rosjava_core:0.3.7'
+    api 'org.ros.rosjava_bootstrap:message_generation:0.3.3'
+
+    testImplementation 'com.1stleg:jnativehook:2.1.0'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    testImplementation 'org.ros.rosjava_messages:std_msgs:0.5.11'
+    testImplementation 'org.ros.rosjava_messages:rosjava_test_msgs:0.3.0'
+}
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+    from {
+        configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+    from {
+        configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+task uberJar(type: Jar) {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    archiveClassifier = 'full'
+    from sourceSets.main.output
+    dependsOn configurations.runtimeClasspath
+    from {
+        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
+    }
+    exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
+}
+artifacts
+        {
+            archives javadocJar, sourcesJar, uberJar
+        }
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+    }
+}
