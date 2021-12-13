@@ -16,8 +16,8 @@ import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
 import br.unicamp.cst.behavior.bn.Behavior;
+import br.unicamp.cst.behavior.bn.GlobalVariables;
 import br.unicamp.cst.core.entities.Codelet;
-import br.unicamp.cst.util.behavior.bn.GlobalVariables;
 
 /**
  * This codelet implements a "winners take all" mechanism for the behavior network.
@@ -34,7 +34,7 @@ public class BehaviorsWTA extends Codelet
 	private ArrayList<Behavior> behaviorsStillActive=new ArrayList<Behavior>();
 	private Behavior chosenBehavior=null;
 	
-	private br.unicamp.cst.util.behavior.bn.GlobalVariables globalVariables;
+	private GlobalVariables globalVariables;
 
 	/**
 	 * Iterate over all behaviors.

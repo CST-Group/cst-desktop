@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import br.unicamp.cst.behavior.bn.Behavior;
+import br.unicamp.cst.behavior.bn.GlobalVariables;
 import br.unicamp.cst.util.behavior.bn.BehaviorNetwork;
-import br.unicamp.cst.util.behavior.bn.GlobalVariables;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
@@ -34,7 +34,7 @@ public class BHMonitor extends Codelet
 	private double initialTime=Calendar.getInstance().getTimeInMillis();
 	private ArrayList<String> behaviorsIWantShownInGraphics=null;
 	
-	private br.unicamp.cst.util.behavior.bn.GlobalVariables globalVariables;
+	private GlobalVariables globalVariables;
 
 	public BHMonitor(br.unicamp.cst.util.behavior.bn.BehaviorNetwork behaviorNetwork, ArrayList<String> behaviorsIWantShownInGraphics, GlobalVariables globalVariables)
 	{

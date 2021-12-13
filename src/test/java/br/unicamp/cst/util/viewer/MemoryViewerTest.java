@@ -6,10 +6,12 @@
 package br.unicamp.cst.util.viewer;
 
 import br.unicamp.cst.core.entities.MemoryObject;
-import br.unicamp.cst.util.TestComplexMemoryObjectInfo;
+
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.util.Random;
+
+import br.unicamp.cst.util.TestComplexMemoryObjectInfo;
 import org.junit.Test;
 
 /**

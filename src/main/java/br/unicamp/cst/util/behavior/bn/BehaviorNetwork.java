@@ -12,6 +12,7 @@ package br.unicamp.cst.util.behavior.bn;
 
 
 import br.unicamp.cst.behavior.bn.Behavior;
+import br.unicamp.cst.behavior.bn.GlobalVariables;
 import br.unicamp.cst.util.behavior.bn.support.SingleThreadBHCodelet;
 import br.unicamp.cst.util.behavior.bn.support.BNplot;
 import br.unicamp.cst.util.behavior.bn.support.BehaviorsWTA;
@@ -49,7 +50,7 @@ public class BehaviorNetwork
 	
 	private WorkingStorage ws;
 	
-	private br.unicamp.cst.util.behavior.bn.GlobalVariables globalVariables;
+	private GlobalVariables globalVariables;
 
 	public BehaviorNetwork(CodeRack codeRack,WorkingStorage ws)
 	{
