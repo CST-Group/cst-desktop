@@ -12,9 +12,9 @@ package br.unicamp.cst.util.viewer.motivational;
 
 import br.unicamp.cst.core.entities.Codelet;
 import br.unicamp.cst.core.entities.Mind;
+import br.unicamp.cst.motivational.EmotionalCodelet;
 import br.unicamp.cst.util.viewer.ChartViewerUtil;
 import br.unicamp.cst.util.viewer.TreeViewerUtil;
-import br.unicamp.cst.util.motivational.EmotionalCodelet;
 import br.unicamp.cst.util.viewer.CodeletPanel;
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;

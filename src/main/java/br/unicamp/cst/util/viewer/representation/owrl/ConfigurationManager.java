@@ -9,10 +9,10 @@
  *     S. M. de Paula and R. R. Gudwin
  ***************************************************************************** */
 
-package br.unicamp.cst.util;
+package br.unicamp.cst.util.viewer.representation.owrl;
 
 import br.unicamp.cst.representation.owrl.AbstractObject;
-import br.unicamp.cst.util.Pair;
+import br.unicamp.cst.representation.owrl.Pair;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;

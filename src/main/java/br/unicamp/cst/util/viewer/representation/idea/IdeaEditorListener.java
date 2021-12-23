@@ -7,25 +7,17 @@
  * <p>
  * Contributors:
  * K. Raizer, A. L. O. Paraense, E. M. Froes, R. R. Gudwin - initial API and implementation
- * **********************************************************************************************/
-package br.unicamp.cst.util;
+ ***********************************************************************************************/
+package br.unicamp.cst.util.viewer.representation.idea;
 
-import org.junit.Test;
+import br.unicamp.cst.representation.idea.Idea;
 
 /**
- * @author gudwin
  *
+ * @author rgudwin
  */
-public class TimeStampTest {
-
-	@Test
-	public void testTimeStamp() {
-		TimeStamp.setStartTime();
-		try {
-			Thread.sleep(3358);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		System.out.println(TimeStamp.getDelaySinceStart());
-	}
+public interface IdeaEditorListener {
+    
+    public void notifyRootChange(Idea newAO);
+    
 }

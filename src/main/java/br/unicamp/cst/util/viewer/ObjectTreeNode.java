@@ -14,7 +14,8 @@ import br.unicamp.cst.representation.owrl.AbstractObject;
 import br.unicamp.cst.representation.owrl.Affordance;
 import br.unicamp.cst.representation.owrl.Property;
 import br.unicamp.cst.representation.owrl.QualityDimension;
-import br.unicamp.cst.representation.wme.Idea;
+import br.unicamp.cst.representation.idea.Idea;
+import br.unicamp.cst.support.ToString;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;

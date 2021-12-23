@@ -1,3 +1,13 @@
+/***********************************************************************************************
+ * Copyright (c) 2012  DCA-FEEC-UNICAMP
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the GNU Lesser Public License v3
+ * which accompanies this distribution, and is available at
+ * http://www.gnu.org/licenses/lgpl.html
+ * <p>
+ * Contributors:
+ * K. Raizer, A. L. O. Paraense, E. M. Froes, R. R. Gudwin - initial API and implementation
+ ***********************************************************************************************/
 package br.unicamp.cst.util;
 
 import static org.junit.Assert.assertEquals;
@@ -20,8 +30,9 @@ import br.unicamp.cst.core.entities.Codelet;
 import br.unicamp.cst.core.entities.MemoryContainer;
 import br.unicamp.cst.core.entities.MemoryObject;
 import br.unicamp.cst.core.entities.Mind;
-import br.unicamp.cst.util.CodeletsProfiler.CodeletTrack;
-import br.unicamp.cst.util.CodeletsProfiler.FileFormat;
+import br.unicamp.cst.support.CodeletsProfiler.FileFormat;
+//import br.unicamp.cst.util.CodeletsProfiler.CodeletTrack;
+//import br.unicamp.cst.util.CodeletsProfiler.FileFormat;
 
 public class CodeletsProfilerTest {
       

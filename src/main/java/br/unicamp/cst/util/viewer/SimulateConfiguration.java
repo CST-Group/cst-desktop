@@ -15,13 +15,14 @@ import java.util.List;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 
-import br.unicamp.cst.util.Pair;
+//import br.unicamp.cst.util.Pair;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import br.unicamp.cst.representation.owrl.AbstractObject;
+import br.unicamp.cst.representation.owrl.Pair;
 import br.unicamp.cst.representation.owrl.grammar.CustomizedListener;
 import br.unicamp.cst.representation.owrl.grammar.OwrlLexer;
 import br.unicamp.cst.representation.owrl.grammar.OwrlParser;

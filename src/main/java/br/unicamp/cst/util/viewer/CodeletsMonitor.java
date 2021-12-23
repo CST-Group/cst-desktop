@@ -9,10 +9,10 @@
  * implementation
  * ****************************************************************************
  */
-package br.unicamp.cst.util.viewer.core.entities;
+package br.unicamp.cst.util.viewer;
 
-import br.unicamp.cst.behavior.bn.support.Grafico;
 import br.unicamp.cst.core.entities.Codelet;
+import br.unicamp.cst.util.behavior.bn.Grafico;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 

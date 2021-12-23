@@ -14,7 +14,7 @@ package br.unicamp.cst.util.viewer;
 
 import br.unicamp.cst.core.entities.Memory;
 import br.unicamp.cst.core.entities.MemoryObject;
-import br.unicamp.cst.util.TimeStamp;
+import br.unicamp.cst.support.TimeStamp;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;

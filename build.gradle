@@ -10,7 +10,7 @@ description = "CST is the Cognitive Systems Toolkit, a toolkit for the construct
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-version = '1.0.0'
+version = '1.0.1'
 
 repositories {
     flatDir {
@@ -34,12 +34,18 @@ configurations {
 }
 
 dependencies {
-    api('com.github.CST-Group:cst:0.8.0')
+    //api('com.github.CST-Group:cst:30fe97d')
+    api('com.github.CST-Group:cst-bindings:1.0.3')
 
+    api group: 'org.jfree', name: 'jfreechart', version: '1.0.19'
     api 'com.soartech:jsoar-core:4.1.0'
     api 'com.soartech:jsoar-debugger:4.1.0'
     //api 'org.ros.rosjava_core:rosjava:0.3.6'
     //implementation 'com.github.rosjava:rosjava_core:0.3.7'
+    api group: 'net.sf.jung', name: 'jung-algorithms', version: '2.0.1'
+    api group: 'net.sf.jung', name: 'jung-graph-impl', version: '2.0.1'
+    api group: 'net.sf.jung', name: 'jung-visualization', version: '2.0.1'
+    api group: 'net.sf.jung', name: 'jung-api', version: '2.0.1'
     api 'com.github.rosjava:rosjava_core:0.3.7'
     api 'org.ros.rosjava_bootstrap:message_generation:0.3.3'
 

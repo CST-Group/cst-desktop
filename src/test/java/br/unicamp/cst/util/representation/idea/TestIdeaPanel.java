@@ -1,14 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package br.unicamp.cst.util.representation.wme;
+/***********************************************************************************************
+ * Copyright (c) 2012  DCA-FEEC-UNICAMP
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the GNU Lesser Public License v3
+ * which accompanies this distribution, and is available at
+ * http://www.gnu.org/licenses/lgpl.html
+ * <p>
+ * Contributors:
+ * K. Raizer, A. L. O. Paraense, E. M. Froes, R. R. Gudwin - initial API and implementation
+ ***********************************************************************************************/
+package br.unicamp.cst.util.representation.idea;
 
 import javax.swing.JFrame;
 
-import br.unicamp.cst.representation.wme.Idea;
-import br.unicamp.cst.util.viewer.representation.wme.IdeaPanel;
+import br.unicamp.cst.representation.idea.Idea;
+import br.unicamp.cst.util.viewer.representation.idea.IdeaPanel;
 import org.junit.Test;
 
 public class TestIdeaPanel {

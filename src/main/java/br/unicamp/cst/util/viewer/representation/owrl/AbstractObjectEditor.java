@@ -8,7 +8,7 @@
  * Contributors:
  *     K. Raizer, A. L. O. Paraense, R. R. Gudwin - initial API and implementation
  ******************************************************************************/
-package br.unicamp.cst.util;
+package br.unicamp.cst.util.viewer.representation.owrl;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -271,12 +271,12 @@ public class AbstractObjectEditor extends javax.swing.JFrame {
         zoom_out = new javax.swing.JButton();
         search = new javax.swing.JButton();
         jsp = new javax.swing.JScrollPane();
-        jtree = new JTree();
+        jtree = new javax.swing.JTree();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        mLoad = new JMenuItem();
-        mSave = new JMenuItem();
-        mClose = new JMenuItem();
+        mLoad = new javax.swing.JMenuItem();
+        mSave = new javax.swing.JMenuItem();
+        mClose = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -284,34 +284,34 @@ public class AbstractObjectEditor extends javax.swing.JFrame {
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
 
-        zoom_in.setIcon(new javax.swing.ImageIcon(getClass().getClassLoader().getResource("zoom-in-icon.png"))); // NOI18N
+        zoom_in.setIcon(new javax.swing.ImageIcon(getClass().getResource("/zoom-in-icon.png"))); // NOI18N
         zoom_in.setFocusable(false);
         zoom_in.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         zoom_in.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        zoom_in.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
+        zoom_in.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 zoom_inActionPerformed(evt);
             }
         });
         jToolBar1.add(zoom_in);
 
-        zoom_out.setIcon(new javax.swing.ImageIcon(getClass().getClassLoader().getResource("zoom-out-icon.png"))); // NOI18N
+        zoom_out.setIcon(new javax.swing.ImageIcon(getClass().getResource("/zoom-out-icon.png"))); // NOI18N
         zoom_out.setFocusable(false);
         zoom_out.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         zoom_out.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        zoom_out.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
+        zoom_out.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 zoom_outActionPerformed(evt);
             }
         });
         jToolBar1.add(zoom_out);
 
-        search.setIcon(new javax.swing.ImageIcon(getClass().getClassLoader().getResource("binoculars.png"))); // NOI18N
+        search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/binoculars.png"))); // NOI18N
         search.setFocusable(false);
         search.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         search.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        search.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
+        search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchActionPerformed(evt);
             }
         });
@@ -322,24 +322,24 @@ public class AbstractObjectEditor extends javax.swing.JFrame {
         jMenu1.setText("File");
 
         mLoad.setText("Load");
-        mLoad.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
+        mLoad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mLoadActionPerformed(evt);
             }
         });
         jMenu1.add(mLoad);
 
         mSave.setText("Save");
-        mSave.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
+        mSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mSaveActionPerformed(evt);
             }
         });
         jMenu1.add(mSave);
 
         mClose.setText("Close");
-        mClose.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
+        mClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mCloseActionPerformed(evt);
             }
         });
@@ -802,10 +802,10 @@ public class AbstractObjectEditor extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JScrollPane jsp;
-    private JTree jtree;
-    private JMenuItem mClose;
-    private JMenuItem mLoad;
-    private JMenuItem mSave;
+    private javax.swing.JTree jtree;
+    private javax.swing.JMenuItem mClose;
+    private javax.swing.JMenuItem mLoad;
+    private javax.swing.JMenuItem mSave;
     private javax.swing.JButton search;
     private javax.swing.JButton zoom_in;
     private javax.swing.JButton zoom_out;

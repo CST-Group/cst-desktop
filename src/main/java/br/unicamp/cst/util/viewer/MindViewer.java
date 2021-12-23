@@ -11,6 +11,7 @@
 package br.unicamp.cst.util.viewer;
 
 import br.unicamp.cst.bindings.soar.JSoarCodelet;
+import br.unicamp.cst.bindings.soar.PlansSubsystemModule;
 import br.unicamp.cst.util.Refresher;
 
 import java.awt.BorderLayout;
@@ -73,6 +74,7 @@ public class MindViewer extends javax.swing.JFrame {
 
     private MotivationalSubsystemViewer motivationalModuleViewer;
     private PlansSubsystemViewer plansSubsystemViewer;
+    public PlansSubsystemModule plansSubsystemModule;
 
     private long instant = 0;
     private boolean bStopRefresh = false;
@@ -89,6 +91,7 @@ public class MindViewer extends javax.swing.JFrame {
     public MindViewer(Mind mind, String windowName, List<Codelet> behavioralCodelets) {
         initComponents();
         setMind(mind);
+        plansSubsystemModule = new PlansSubsystemModule();
         setWindowName(windowName);
         setBehavioralCodelets(behavioralCodelets);
         MindPanel newContentPane = new MindPanel(mind);
@@ -127,8 +130,8 @@ public class MindViewer extends javax.swing.JFrame {
             }    
         }    
 
-        if(mind.getPlansSubsystemModule().verifyExistCodelets()){
-            plansSubsystemViewer = new PlansSubsystemViewer(Long.parseLong(txtRefreshTime.getText()), mind);
+        if(plansSubsystemModule.verifyExistCodelets()){
+            plansSubsystemViewer = new PlansSubsystemViewer(Long.parseLong(txtRefreshTime.getText()), this);
             tbControl.add("Plans Subsystem", plansSubsystemViewer);
         }
     }

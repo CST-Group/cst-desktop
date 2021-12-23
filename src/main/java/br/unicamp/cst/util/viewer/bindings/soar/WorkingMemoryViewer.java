@@ -1,8 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/***********************************************************************************************
+ * Copyright (c) 2012  DCA-FEEC-UNICAMP
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the GNU Lesser Public License v3
+ * which accompanies this distribution, and is available at
+ * http://www.gnu.org/licenses/lgpl.html
+ * <p>
+ * Contributors:
+ * K. Raizer, A. L. O. Paraense, E. M. Froes, R. R. Gudwin - initial API and implementation
+ ***********************************************************************************************/
 package br.unicamp.cst.util.viewer.bindings.soar;
 
 import java.util.Iterator;
@@ -169,13 +174,13 @@ public class WorkingMemoryViewer extends javax.swing.JFrame {
         zoom_in = new javax.swing.JButton();
         zoom_out = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTree1 = new JTree();
+        jTree1 = new javax.swing.JTree();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jToolBar1.setRollover(true);
 
-        zoom_in.setIcon(new javax.swing.ImageIcon(getClass().getClassLoader().getResource("zoom-in-icon.png"))); // NOI18N
+        zoom_in.setIcon(new javax.swing.ImageIcon(getClass().getResource("/zoom-in-icon.png"))); // NOI18N
         zoom_in.setFocusable(false);
         zoom_in.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         zoom_in.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -186,7 +191,7 @@ public class WorkingMemoryViewer extends javax.swing.JFrame {
         });
         jToolBar1.add(zoom_in);
 
-        zoom_out.setIcon(new javax.swing.ImageIcon(getClass().getClassLoader().getResource("zoom-out-icon.png"))); // NOI18N
+        zoom_out.setIcon(new javax.swing.ImageIcon(getClass().getResource("/zoom-out-icon.png"))); // NOI18N
         zoom_out.setFocusable(false);
         zoom_out.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         zoom_out.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -230,7 +235,7 @@ public class WorkingMemoryViewer extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar jToolBar1;
-    private JTree jTree1;
+    private javax.swing.JTree jTree1;
     private javax.swing.JButton zoom_in;
     private javax.swing.JButton zoom_out;
     // End of variables declaration//GEN-END:variables

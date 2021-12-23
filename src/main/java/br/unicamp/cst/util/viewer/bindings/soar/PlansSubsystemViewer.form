@@ -140,7 +140,7 @@
                 <Component class="javax.swing.JButton" name="startstop">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/br/unicamp/cst/images/pause-icon.png"/>
+                      <Image iconType="3" name="/pause-icon.png"/>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value="Play/Pause"/>
                     <Property name="focusable" type="boolean" value="false"/>
@@ -154,7 +154,7 @@
                 <Component class="javax.swing.JButton" name="mstep">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/br/unicamp/cst/images/skip-forward-icon.png"/>
+                      <Image iconType="3" name="/skip-forward-icon.png"/>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value="micro-step"/>
                     <Property name="enabled" type="boolean" value="false"/>
@@ -169,7 +169,7 @@
                 <Component class="javax.swing.JButton" name="step">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/br/unicamp/cst/images/forward-icon.png"/>
+                      <Image iconType="3" name="/forward-icon.png"/>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value="step"/>
                     <Property name="enabled" type="boolean" value="false"/>

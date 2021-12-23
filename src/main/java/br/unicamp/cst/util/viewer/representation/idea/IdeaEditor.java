@@ -8,9 +8,9 @@
  * Contributors:
  *     K. Raizer, A. L. O. Paraense, R. R. Gudwin - initial API and implementation
  ******************************************************************************/
-package br.unicamp.cst.util.viewer.representation.wme;
+package br.unicamp.cst.util.viewer.representation.idea;
 
-import br.unicamp.cst.representation.wme.Idea;
+import br.unicamp.cst.representation.idea.Idea;
 
 import java.util.List;
 
@@ -84,7 +84,7 @@ public class IdeaEditor extends javax.swing.JFrame {
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
 
-        zoom_in.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unicamp/cst/images/zoom-in-icon.png"))); // NOI18N
+        zoom_in.setIcon(new javax.swing.ImageIcon(getClass().getResource("/zoom-in-icon.png"))); // NOI18N
         zoom_in.setFocusable(false);
         zoom_in.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         zoom_in.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -95,7 +95,7 @@ public class IdeaEditor extends javax.swing.JFrame {
         });
         jToolBar1.add(zoom_in);
 
-        zoom_out.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unicamp/cst/images/zoom-out-icon.png"))); // NOI18N
+        zoom_out.setIcon(new javax.swing.ImageIcon(getClass().getResource("/zoom-out-icon.png"))); // NOI18N
         zoom_out.setFocusable(false);
         zoom_out.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         zoom_out.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -106,7 +106,7 @@ public class IdeaEditor extends javax.swing.JFrame {
         });
         jToolBar1.add(zoom_out);
 
-        search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unicamp/cst/images/binoculars.png"))); // NOI18N
+        search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/binoculars.png"))); // NOI18N
         search.setFocusable(false);
         search.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         search.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);

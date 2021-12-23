@@ -8,7 +8,7 @@
  * Contributors:
  *     K. Raizer, A. L. O. Paraense, R. R. Gudwin - initial API and implementation
  ******************************************************************************/
-package br.unicamp.cst.util.behavior.bn.support;
+package br.unicamp.cst.util.behavior.bn;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;

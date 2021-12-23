@@ -10,15 +10,15 @@
  ******************************************************************************/
 package br.unicamp.cst.util.viewer;
 
+import br.unicamp.cst.representation.idea.Idea;
 import java.awt.Dialog;
 
-import br.unicamp.cst.representation.wme.Idea;
 import org.jfree.ui.RefineryUtilities;
 
 import br.unicamp.cst.representation.owrl.AbstractObject;
 import br.unicamp.cst.representation.owrl.Property;
 import br.unicamp.cst.representation.owrl.QualityDimension;
-import br.unicamp.cst.util.viewer.representation.wme.IdeaTreeNode;
+import br.unicamp.cst.util.viewer.representation.idea.IdeaTreeNode;
 
 /**
  *

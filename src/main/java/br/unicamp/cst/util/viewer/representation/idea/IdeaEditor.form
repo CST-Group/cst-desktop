@@ -92,7 +92,7 @@
         <Component class="javax.swing.JButton" name="zoom_in">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/br/unicamp/cst/images/zoom-in-icon.png"/>
+              <Image iconType="3" name="/zoom-in-icon.png"/>
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -105,7 +105,7 @@
         <Component class="javax.swing.JButton" name="zoom_out">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/br/unicamp/cst/images/zoom-out-icon.png"/>
+              <Image iconType="3" name="/zoom-out-icon.png"/>
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -118,7 +118,7 @@
         <Component class="javax.swing.JButton" name="search">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/br/unicamp/cst/images/binoculars.png"/>
+              <Image iconType="3" name="/binoculars.png"/>
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>

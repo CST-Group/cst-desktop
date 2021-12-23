@@ -9,14 +9,14 @@
  *     K. Raizer, A. L. O. Paraense, R. R. Gudwin - initial API and implementation
  ******************************************************************************/
 
-package br.unicamp.cst.util.behavior.bn.support;
+package br.unicamp.cst.util.behavior.bn;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 
 import br.unicamp.cst.behavior.bn.Behavior;
+import br.unicamp.cst.behavior.bn.BehaviorNetwork;
 import br.unicamp.cst.behavior.bn.GlobalVariables;
-import br.unicamp.cst.util.behavior.bn.BehaviorNetwork;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
@@ -30,13 +30,13 @@ import br.unicamp.cst.core.entities.Codelet;
 public class BHMonitor extends Codelet 
 {
 	private XYSeriesCollection dataset;
-	private br.unicamp.cst.util.behavior.bn.BehaviorNetwork behaviorNetwork;
+	private BehaviorNetwork behaviorNetwork;
 	private double initialTime=Calendar.getInstance().getTimeInMillis();
 	private ArrayList<String> behaviorsIWantShownInGraphics=null;
 	
 	private GlobalVariables globalVariables;
 
-	public BHMonitor(br.unicamp.cst.util.behavior.bn.BehaviorNetwork behaviorNetwork, ArrayList<String> behaviorsIWantShownInGraphics, GlobalVariables globalVariables)
+	public BHMonitor(BehaviorNetwork behaviorNetwork, ArrayList<String> behaviorsIWantShownInGraphics, GlobalVariables globalVariables)
 	{
 		this.globalVariables = globalVariables;
 		this.behaviorsIWantShownInGraphics=behaviorsIWantShownInGraphics;

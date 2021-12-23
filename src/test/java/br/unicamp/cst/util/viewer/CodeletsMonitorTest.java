@@ -1,7 +1,16 @@
-package br.unicamp.cst.util.viewer.core.entities;
+/***********************************************************************************************
+ * Copyright (c) 2012  DCA-FEEC-UNICAMP
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the GNU Lesser Public License v3
+ * which accompanies this distribution, and is available at
+ * http://www.gnu.org/licenses/lgpl.html
+ * <p>
+ * Contributors:
+ * K. Raizer, A. L. O. Paraense, E. M. Froes, R. R. Gudwin - initial API and implementation
+ ***********************************************************************************************/
+package br.unicamp.cst.util.viewer;
 
 import br.unicamp.cst.core.entities.Codelet;
-import br.unicamp.cst.core.entities.CodeletsMonitor;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -46,7 +55,7 @@ public class CodeletsMonitorTest {
         testCodelet.setName("testCodelet");
         otherCodelet.setName("otherCodelet");
         List<Codelet> testList = Arrays.asList(testCodelet, otherCodelet);
-        br.unicamp.cst.core.entities.CodeletsMonitor codeletsMonitor = new br.unicamp.cst.core.entities.CodeletsMonitor(testList, 500, "testMonitor");
+        br.unicamp.cst.util.viewer.CodeletsMonitor codeletsMonitor = new br.unicamp.cst.util.viewer.CodeletsMonitor(testList, 500, "testMonitor");
 
         codeletsMonitor.setTitle("testMonitor_2");
 
@@ -70,7 +79,7 @@ public class CodeletsMonitorTest {
         testCodelet.setName("testCodelet");
         otherCodelet.setName("otherCodelet");
         List<Codelet> testList = Arrays.asList(testCodelet, otherCodelet);
-        br.unicamp.cst.core.entities.CodeletsMonitor codeletsMonitor = new CodeletsMonitor(testList, 500, "testMonitor", true, 1000);
+        CodeletsMonitor codeletsMonitor = new CodeletsMonitor(testList, 500, "testMonitor", true, 1000);
 
         codeletsMonitor.setAutoRangeValue(500);
 

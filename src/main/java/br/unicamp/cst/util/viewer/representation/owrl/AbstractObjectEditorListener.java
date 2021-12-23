@@ -8,12 +8,16 @@
  * Contributors:
  * K. Raizer, A. L. O. Paraense, E. M. Froes, R. R. Gudwin - initial API and implementation
  ***********************************************************************************************/
-package br.unicamp.cst.util;
+package br.unicamp.cst.util.viewer.representation.owrl;
+
+import br.unicamp.cst.representation.owrl.AbstractObject;
 
 /**
  *
  * @author rgudwin
  */
-public abstract class Refresher {
-    public abstract long refresh();    
+public interface AbstractObjectEditorListener {
+    
+    public void notifyRootChange(AbstractObject newAO);
+    
 }

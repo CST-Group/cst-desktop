@@ -8,9 +8,9 @@
  * Contributors:
  * K. Raizer, A. L. O. Paraense, E. M. Froes, R. R. Gudwin - initial API and implementation
  ***********************************************************************************************/
-package br.unicamp.cst.util.viewer.representation.wme;
+package br.unicamp.cst.util.viewer.representation.idea;
 
-import br.unicamp.cst.representation.wme.Idea;
+import br.unicamp.cst.representation.idea.Idea;
 import br.unicamp.cst.util.viewer.TreeElement;
 import java.util.Collections;
 import java.util.concurrent.CopyOnWriteArrayList;

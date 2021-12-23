@@ -1,8 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/***********************************************************************************************
+ * Copyright (c) 2012  DCA-FEEC-UNICAMP
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the GNU Lesser Public License v3
+ * which accompanies this distribution, and is available at
+ * http://www.gnu.org/licenses/lgpl.html
+ * <p>
+ * Contributors:
+ * K. Raizer, A. L. O. Paraense, E. M. Froes, R. R. Gudwin - initial API and implementation
+ ***********************************************************************************************/
 package br.unicamp.cst.util.viewer.bindings.soar;
 
 import java.util.Observable;
@@ -12,9 +17,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 
 import br.unicamp.cst.bindings.soar.JSoarCodelet;
-import br.unicamp.cst.representation.wme.Idea;
-import br.unicamp.cst.util.viewer.representation.wme.IdeaEditor;
-import br.unicamp.cst.util.viewer.representation.wme.IdeaEditorListener;
+import br.unicamp.cst.representation.idea.Idea;
+import br.unicamp.cst.util.viewer.representation.idea.IdeaEditor;
+import br.unicamp.cst.util.viewer.representation.idea.IdeaEditorListener;
 
 /**
  *
@@ -85,7 +90,7 @@ public class SOARInspector extends javax.swing.JFrame implements Observer,IdeaEd
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
 
-        startstop.setIcon(new ImageIcon(getClass().getClassLoader().getResource("pause-icon.png"))); // NOI18N
+        startstop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pause-icon.png"))); // NOI18N
         startstop.setToolTipText("Play/Pause");
         startstop.setFocusable(false);
         startstop.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -97,7 +102,7 @@ public class SOARInspector extends javax.swing.JFrame implements Observer,IdeaEd
         });
         jToolBar1.add(startstop);
 
-        mstep.setIcon(new ImageIcon(getClass().getClassLoader().getResource("skip-forward-icon.png"))); // NOI18N
+        mstep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/skip-forward-icon.png"))); // NOI18N
         mstep.setToolTipText("micro-step");
         mstep.setEnabled(false);
         mstep.setFocusable(false);
@@ -110,7 +115,7 @@ public class SOARInspector extends javax.swing.JFrame implements Observer,IdeaEd
         });
         jToolBar1.add(mstep);
 
-        step.setIcon(new ImageIcon(getClass().getClassLoader().getResource("forward-icon.png"))); // NOI18N
+        step.setIcon(new javax.swing.ImageIcon(getClass().getResource("/forward-icon.png"))); // NOI18N
         step.setToolTipText("step");
         step.setEnabled(false);
         step.setFocusable(false);

@@ -15,8 +15,9 @@ import br.unicamp.cst.representation.owrl.AbstractObject;
 import br.unicamp.cst.representation.owrl.Affordance;
 import br.unicamp.cst.representation.owrl.Property;
 import br.unicamp.cst.representation.owrl.QualityDimension;
-import br.unicamp.cst.representation.wme.Idea;
-import br.unicamp.cst.util.TimeStamp;
+import br.unicamp.cst.representation.idea.Idea;
+import br.unicamp.cst.support.TimeStamp;
+import br.unicamp.cst.support.ToString;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -413,7 +414,7 @@ public class MemoryInspector extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        objTree = new JTree();
+        objTree = new javax.swing.JTree();
         bPause = new javax.swing.JButton();
         bStop = new javax.swing.JButton();
 
@@ -421,16 +422,16 @@ public class MemoryInspector extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(objTree);
 
-        bPause.setIcon(new ImageIcon(getClass().getResource("/pause-icon.png"))); // NOI18N
-        bPause.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
+        bPause.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pause-icon.png"))); // NOI18N
+        bPause.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bPauseActionPerformed(evt);
             }
         });
 
-        bStop.setIcon(new ImageIcon(getClass().getResource("/stop-playing-icon.png"))); // NOI18N
-        bStop.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
+        bStop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/stop-playing-icon.png"))); // NOI18N
+        bStop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bStopActionPerformed(evt);
             }
         });
@@ -479,7 +480,7 @@ public class MemoryInspector extends javax.swing.JFrame {
     private javax.swing.JButton bPause;
     private javax.swing.JButton bStop;
     private javax.swing.JScrollPane jScrollPane1;
-    private JTree objTree;
+    private javax.swing.JTree objTree;
     // End of variables declaration//GEN-END:variables
 }
 

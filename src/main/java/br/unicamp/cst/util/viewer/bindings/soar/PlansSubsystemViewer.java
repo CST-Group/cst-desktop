@@ -1,14 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/***********************************************************************************************
+ * Copyright (c) 2012  DCA-FEEC-UNICAMP
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the GNU Lesser Public License v3
+ * which accompanies this distribution, and is available at
+ * http://www.gnu.org/licenses/lgpl.html
+ * <p>
+ * Contributors:
+ * K. Raizer, A. L. O. Paraense, E. M. Froes, R. R. Gudwin - initial API and implementation
+ ***********************************************************************************************/
 package br.unicamp.cst.util.viewer.bindings.soar;
 
 import br.unicamp.cst.bindings.soar.JSoarCodelet;
 import br.unicamp.cst.bindings.soar.PlanSelectionCodelet;
 import br.unicamp.cst.bindings.soar.PlansSubsystemModule;
-import br.unicamp.cst.core.entities.Mind;
+import br.unicamp.cst.util.viewer.MindViewer;
 import br.unicamp.cst.util.viewer.TreeViewerUtil;
 
 import java.util.Arrays;
@@ -33,7 +38,7 @@ public class PlansSubsystemViewer extends JPanel {
 
     private PlanSelectionCodelet planSelectionCodelet;
 
-    private Mind mind;
+    //private Mind mind;
 
     private ImageIcon pauseIcon;
     private ImageIcon playIcon;
@@ -45,15 +50,15 @@ public class PlansSubsystemViewer extends JPanel {
     /**
      * Creates new form PlansSubsystemViewer
      */
-    public PlansSubsystemViewer(long refreshTime, Mind mind) {
+    public PlansSubsystemViewer(long refreshTime, MindViewer mv) {
         initComponents();
         setRefreshTime(refreshTime);
-        setMind(mind);
+        //setMind(mind);
 
         setPauseIcon(new ImageIcon(getClass().getClassLoader().getResource("pause-icon.png")));
         setPlayIcon(new ImageIcon(getClass().getClassLoader().getResource("play-icon.png")));
 
-        initPlansSubsystemViewer(mind.getPlansSubsystemModule());
+        initPlansSubsystemViewer(mv.plansSubsystemModule);
 
     }
 
@@ -227,29 +232,29 @@ public class PlansSubsystemViewer extends JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jspPlanSubsystem = new JSplitPane();
-        pnPlanSubsystem = new JPanel();
-        tpPlanInput = new JTabbedPane();
-        spPlanInput = new JScrollPane();
-        txtPlanInput = new JTextArea();
-        tpPlanOutput = new JTabbedPane();
-        spPlanOutput = new JScrollPane();
-        txtPlanOutput = new JTextArea();
-        spCreatedPlans = new JScrollPane();
-        jToolBar1 = new JToolBar();
-        startstop = new JButton();
-        mstep = new JButton();
-        step = new JButton();
-        txtCurrentPhase = new JTextField();
-        jspPlanDebugger = new JSplitPane();
-        tpPlanOperators = new JTabbedPane();
-        spPlanOperators = new JScrollPane();
-        tpPlanWme = new JTabbedPane();
-        spPlanSubsystem = new JScrollPane();
+        jspPlanSubsystem = new javax.swing.JSplitPane();
+        pnPlanSubsystem = new javax.swing.JPanel();
+        tpPlanInput = new javax.swing.JTabbedPane();
+        spPlanInput = new javax.swing.JScrollPane();
+        txtPlanInput = new javax.swing.JTextArea();
+        tpPlanOutput = new javax.swing.JTabbedPane();
+        spPlanOutput = new javax.swing.JScrollPane();
+        txtPlanOutput = new javax.swing.JTextArea();
+        spCreatedPlans = new javax.swing.JScrollPane();
+        jToolBar1 = new javax.swing.JToolBar();
+        startstop = new javax.swing.JButton();
+        mstep = new javax.swing.JButton();
+        step = new javax.swing.JButton();
+        txtCurrentPhase = new javax.swing.JTextField();
+        jspPlanDebugger = new javax.swing.JSplitPane();
+        tpPlanOperators = new javax.swing.JTabbedPane();
+        spPlanOperators = new javax.swing.JScrollPane();
+        tpPlanWme = new javax.swing.JTabbedPane();
+        spPlanSubsystem = new javax.swing.JScrollPane();
 
         setLayout(new java.awt.GridBagLayout());
 
-        jspPlanSubsystem.setOrientation(JSplitPane.VERTICAL_SPLIT);
+        jspPlanSubsystem.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
         pnPlanSubsystem.setMinimumSize(new java.awt.Dimension(0, 0));
         pnPlanSubsystem.setLayout(new java.awt.GridBagLayout());
@@ -294,11 +299,11 @@ public class PlansSubsystemViewer extends JPanel {
 
         jToolBar1.setRollover(true);
 
-        startstop.setIcon(new ImageIcon(getClass().getClassLoader().getResource("pause-icon.png"))); // NOI18N
+        startstop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pause-icon.png"))); // NOI18N
         startstop.setToolTipText("Play/Pause");
         startstop.setFocusable(false);
-        startstop.setHorizontalTextPosition(SwingConstants.CENTER);
-        startstop.setVerticalTextPosition(SwingConstants.BOTTOM);
+        startstop.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        startstop.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         startstop.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startstopActionPerformed(evt);
@@ -306,12 +311,12 @@ public class PlansSubsystemViewer extends JPanel {
         });
         jToolBar1.add(startstop);
 
-        mstep.setIcon(new ImageIcon(getClass().getClassLoader().getResource("skip-forward-icon.png"))); // NOI18N
+        mstep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/skip-forward-icon.png"))); // NOI18N
         mstep.setToolTipText("micro-step");
         mstep.setEnabled(false);
         mstep.setFocusable(false);
-        mstep.setHorizontalTextPosition(SwingConstants.CENTER);
-        mstep.setVerticalTextPosition(SwingConstants.BOTTOM);
+        mstep.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        mstep.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         mstep.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mstepActionPerformed(evt);
@@ -319,12 +324,12 @@ public class PlansSubsystemViewer extends JPanel {
         });
         jToolBar1.add(mstep);
 
-        step.setIcon(new ImageIcon(getClass().getClassLoader().getResource("forward-icon.png"))); // NOI18N
+        step.setIcon(new javax.swing.ImageIcon(getClass().getResource("/forward-icon.png"))); // NOI18N
         step.setToolTipText("step");
         step.setEnabled(false);
         step.setFocusable(false);
-        step.setHorizontalTextPosition(SwingConstants.CENTER);
-        step.setVerticalTextPosition(SwingConstants.BOTTOM);
+        step.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        step.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         step.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 stepActionPerformed(evt);
@@ -383,25 +388,25 @@ public class PlansSubsystemViewer extends JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private JToolBar jToolBar1;
-    private JSplitPane jspPlanDebugger;
-    private JSplitPane jspPlanSubsystem;
-    private JButton mstep;
-    private JPanel pnPlanSubsystem;
-    private JScrollPane spCreatedPlans;
-    private JScrollPane spPlanInput;
-    private JScrollPane spPlanOperators;
-    private JScrollPane spPlanOutput;
-    private JScrollPane spPlanSubsystem;
-    private JButton startstop;
-    private JButton step;
-    private JTabbedPane tpPlanInput;
-    private JTabbedPane tpPlanOperators;
-    private JTabbedPane tpPlanOutput;
-    private JTabbedPane tpPlanWme;
-    private JTextField txtCurrentPhase;
-    private JTextArea txtPlanInput;
-    private JTextArea txtPlanOutput;
+    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JSplitPane jspPlanDebugger;
+    private javax.swing.JSplitPane jspPlanSubsystem;
+    private javax.swing.JButton mstep;
+    private javax.swing.JPanel pnPlanSubsystem;
+    private javax.swing.JScrollPane spCreatedPlans;
+    private javax.swing.JScrollPane spPlanInput;
+    private javax.swing.JScrollPane spPlanOperators;
+    private javax.swing.JScrollPane spPlanOutput;
+    private javax.swing.JScrollPane spPlanSubsystem;
+    private javax.swing.JButton startstop;
+    private javax.swing.JButton step;
+    private javax.swing.JTabbedPane tpPlanInput;
+    private javax.swing.JTabbedPane tpPlanOperators;
+    private javax.swing.JTabbedPane tpPlanOutput;
+    private javax.swing.JTabbedPane tpPlanWme;
+    private javax.swing.JTextField txtCurrentPhase;
+    private javax.swing.JTextArea txtPlanInput;
+    private javax.swing.JTextArea txtPlanOutput;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -446,13 +451,13 @@ public class PlansSubsystemViewer extends JPanel {
         this.soarPlanningCodelet = soarPlanningCodelet;
     }
 
-    public Mind getMind() {
-        return mind;
-    }
-
-    public void setMind(Mind mind) {
-        this.mind = mind;
-    }
+//    public Mind getMind() {
+//        return mind;
+//    }
+//
+//    public void setMind(Mind mind) {
+//        this.mind = mind;
+//    }
 
     public synchronized long getRefreshTime() {
         return refreshTime;
