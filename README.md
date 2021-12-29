@@ -2,7 +2,7 @@
 ![](https://github.com/CST-Group/cst-utils/actions/workflows/java-ci.yml/badge.svg)
 [![Maintainability](https://api.codeclimate.com/v1/badges/d235a7ebd7e2fb36554c/maintainability)](https://codeclimate.com/github/CST-Group/cst-utils/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/d235a7ebd7e2fb36554c/test_coverage)](https://codeclimate.com/github/CST-Group/cst-utils/test_coverage)
-[![](https://jitpack.io/v/CST-Group/cst-utils.svg)](https://jitpack.io/#CST-Group/cst-utils)
+[![](https://jitpack.io/v/CST-Group/cst-desktop.svg)](https://jitpack.io/#CST-Group/cst-desktop)
 
 
 # Welcome to the CST Toolkit pages.
@@ -33,7 +33,7 @@ Note: This library is still under development, and some concepts or features mig
 	}
 ```
 
-Sometimes, the version number (tag) in this README gets out of date, as maintainers might forget to change it when releasing. Always check the release badge [![](https://jitpack.io/v/CST-Group/cst.svg?label=Release)](https://jitpack.io/#CST-Group/cst) to see the actual current version number that should be provided in the dependencies in Step 2 above.
+Sometimes, the version number (tag) in this README gets out of date, as maintainers might forget to change it when releasing. Always check the release badge [![](https://jitpack.io/v/CST-Group/cst-desktop.svg)](https://jitpack.io/#CST-Group/cst-desktop) to see the actual current version number that should be provided in the dependencies in Step 2 above.
 
 ### Maven
 
@@ -58,7 +58,7 @@ Sometimes, the version number (tag) in this README gets out of date, as maintain
 	</dependency>
 ```
 
-Sometimes, the version number (tag) in this README gets out of date, as maintainers might forget to change it when releasing. Always check the release badge [![](https://jitpack.io/v/CST-Group/cst.svg?label=Release)](https://jitpack.io/#CST-Group/cst) to see the actual current version number that should be provided in the dependencies in Step 2 above.
+Sometimes, the version number (tag) in this README gets out of date, as maintainers might forget to change it when releasing. Always check the release badge [![](https://jitpack.io/v/CST-Group/cst-desktop.svg)](https://jitpack.io/#CST-Group/cst-desktop) to see the actual current version number that should be provided in the dependencies in Step 2 above.
 
 ### Manual
 
