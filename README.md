@@ -1,9 +1,12 @@
-# cst-utils
+# CST-Desktop - A Version of CST (Cognitive Systems Toolkit) for Java Desktop
 ![](https://github.com/CST-Group/cst-utils/actions/workflows/java-ci.yml/badge.svg)
 [![Maintainability](https://api.codeclimate.com/v1/badges/d235a7ebd7e2fb36554c/maintainability)](https://codeclimate.com/github/CST-Group/cst-utils/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/d235a7ebd7e2fb36554c/test_coverage)](https://codeclimate.com/github/CST-Group/cst-utils/test_coverage)
 [![](https://jitpack.io/v/CST-Group/cst-desktop.svg)](https://jitpack.io/#CST-Group/cst-desktop)
 
+# Remarks and relation to the CST package
+
+The CST (Cognitive Systems Toolkit) was refactored in order to be 100% compatible to run in Android environment, at the same time it runs also on standard Java Desktop. This project contains all the old classes and functionalities which were exclusive of Java Desktop. It still maintains a dependency on the [cst project](https://github.com/CST-Group/cst) and uses cst for the standard classes, just appending other classes, which are exclusive for Desktop use. Users of old versions of CST (before 1.0.0), which are using it on the desktop, are encouraged to use cst-desktop instead of cst, as it already includes a dependency on cst. 
 
 # Welcome to the CST Toolkit pages.
 
@@ -86,9 +89,7 @@ CST requires at minimum Java 8.
 
 ### Authors and Contributors
 The main contributors of this project are: 
-* [Ricardo Ribeiro Gudwin](httUtility package of CST (Cognitive Systems Toolkit)
-3
-ps://github.com/rgudwin)
+* [Ricardo Ribeiro Gudwin](https://github.com/rgudwin) 
 * [Klaus Raizer](https://github.com/KRaizer)
 * [André Luis Ogando Paraense](https://github.com/andre-paraense)
 * [Suelen Mapa de Paula](https://github.com/suelenmapa)
