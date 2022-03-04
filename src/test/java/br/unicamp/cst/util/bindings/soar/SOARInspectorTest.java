@@ -59,7 +59,7 @@ public class SOARInspectorTest {
         SOARInspector si = new SOARInspector(jSoarCodelet);
         si.setVisible(true);	
         
-        Thread.sleep(60000);
+        Thread.sleep(2000);
         
         si.setVisible(false);	
     }

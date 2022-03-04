@@ -58,7 +58,7 @@ public class IdeaTreeNodeComparator implements Comparator {
             TreeElement te2 = wo2.getTreeElement();
             int try1 = getNumber(te1.getName());
             int try2 = getNumber(te2.getName());
-            System.out.println(te1.getName()+": "+try1+" "+te2.getName()+": "+try2);
+            //System.out.println(te1.getName()+": "+try1+" "+te2.getName()+": "+try2);
             if (try1 != Integer.MIN_VALUE && try2 != Integer.MIN_VALUE) {
                 if (try1 > try2) return(1);
                 else return(-1);

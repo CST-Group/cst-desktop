@@ -31,6 +31,8 @@ public class DialogFactory extends javax.swing.JDialog {
 
     /**
      * Creates new form AbstractObjectDialog
+     * @param parent the parent of the dialog
+     * @param modal if the dialog is to be modal or not
      */
     public DialogFactory(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -251,32 +253,53 @@ public class DialogFactory extends javax.swing.JDialog {
         }
     }
     
-    public static IdeaTreeNode getIdentifier(IdeaTreeNode baseNode) {
-
-    DialogFactory dialog = new DialogFactory(null,true);
-    dialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-    //dialog.setBounds(350, 350, 200, 200);
-    dialog.setTitle("Enter WME data ...");
-    dialog.jValue.setEditable(false);
-    dialog.jValue.setEnabled(false);
-    //RefineryUtilities.centerFrameOnScreen(dialog);
-    dialog.setVisible(true);
-    dialog.dispose();
-    if (dialog.ok == true) {
-        String newname = dialog.jName.getText();
-        Idea newwmnode = Idea.createIdea(newname,"null",0);
-        IdeaTreeNode newnode = baseNode.addIdentifier(newwmnode);
-        return(newnode);
-    }
-    else return(null);
-    }
+//    public static IdeaTreeNode getIdentifier(IdeaTreeNode baseNode) {
+//
+//    DialogFactory dialog = new DialogFactory(null,true);
+//    dialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+//    //dialog.setBounds(350, 350, 200, 200);
+//    dialog.setTitle("Enter WME data ...");
+//    dialog.jValue.setEditable(false);
+//    dialog.jValue.setEnabled(false);
+//    //RefineryUtilities.centerFrameOnScreen(dialog);
+//    dialog.setVisible(true);
+//    dialog.dispose();
+//    if (dialog.ok == true) {
+//        String newname = dialog.jName.getText();
+//        Idea newwmnode = Idea.createIdea(newname,"null",0);
+//        IdeaTreeNode newnode = baseNode.addIdeaNode(newwmnode);
+//        return(newnode);
+//    }
+//    else return(null);
+//    }
     
-    public static IdeaTreeNode getValue(IdeaTreeNode baseNode) {
+//    public static IdeaTreeNode getValue(IdeaTreeNode baseNode) {
+//
+//    DialogFactory dialog = new DialogFactory(null,true);
+//    dialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+//    //dialog.setBounds(350, 350, 200, 200);
+//    dialog.setTitle("Enter child WME value ...");
+//    dialog.jValue.setEditable(true);
+//    dialog.jValue.setEnabled(true);
+//    //RefineryUtilities.centerFrameOnScreen(dialog);
+//    dialog.setVisible(true);
+//    dialog.dispose();
+//    if (dialog.ok == true) {
+//        String newname = dialog.jName.getText();
+//        String newvalue = dialog.jValue.getText();
+//        Idea newwmnode = new Idea(newname,newvalue);
+//        IdeaTreeNode newnode = baseNode.addIdeaNode(newwmnode);
+//        return(newnode);
+//    }
+//    else return(null);
+//    } 
+    
+    public static IdeaTreeNode getIdea(IdeaTreeNode baseNode) {
 
     DialogFactory dialog = new DialogFactory(null,true);
     dialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
     //dialog.setBounds(350, 350, 200, 200);
-    dialog.setTitle("Enter child WME value ...");
+    dialog.setTitle("Enter child Idea ...");
     dialog.jValue.setEditable(true);
     dialog.jValue.setEnabled(true);
     //RefineryUtilities.centerFrameOnScreen(dialog);
@@ -286,40 +309,65 @@ public class DialogFactory extends javax.swing.JDialog {
         String newname = dialog.jName.getText();
         String newvalue = dialog.jValue.getText();
         Idea newwmnode = new Idea(newname,newvalue);
-        IdeaTreeNode newnode = baseNode.addWMNode(newwmnode);
+        IdeaTreeNode newnode = baseNode.addIdeaNode(newwmnode);
         return(newnode);
     }
     else return(null);
     } 
     
-    public static String editIdentifier(IdeaTreeNode node) {
-        DialogFactory dialog = new DialogFactory(null,true);
-        dialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-        //dialog.setBounds(350, 350, 200, 200);
-        dialog.setTitle("Edit WM data ...");
-        dialog.jValue.setEditable(false);
-        dialog.jValue.setEnabled(false);
-        TreeElement te = (TreeElement) node.getUserObject();
-        String text = te.getName();
-        String tudo[] = text.split(" ");
-        dialog.jName.setText(tudo[0]);
-        //RefineryUtilities.centerFrameOnScreen(dialog);
-        dialog.setVisible(true);
-        dialog.dispose();
-        if (dialog.ok == true) {
-           Idea id = (Idea) te.getElement();
-           id.setName(dialog.jName.getText());
-           te.setName(dialog.jName.getText()+" [*]");
-           return(dialog.jName.getText());
-        }
-        else return null;
-    }
+//    public static String editIdentifier(IdeaTreeNode node) {
+//        DialogFactory dialog = new DialogFactory(null,true);
+//        dialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+//        //dialog.setBounds(350, 350, 200, 200);
+//        dialog.setTitle("Edit WM data ...");
+//        dialog.jValue.setEditable(false);
+//        dialog.jValue.setEnabled(false);
+//        TreeElement te = (TreeElement) node.getUserObject();
+//        String text = te.getName();
+//        String tudo[] = text.split(" ");
+//        dialog.jName.setText(tudo[0]);
+//        //RefineryUtilities.centerFrameOnScreen(dialog);
+//        dialog.setVisible(true);
+//        dialog.dispose();
+//        if (dialog.ok == true) {
+//           Idea id = (Idea) te.getElement();
+//           id.setName(dialog.jName.getText());
+//           te.setName(dialog.jName.getText()+" [*]");
+//           return(dialog.jName.getText());
+//        }
+//        else return null;
+//    }
     
-    public static String editValue(IdeaTreeNode node) {
+//    public static String editValue(IdeaTreeNode node) {
+//        DialogFactory dialog = new DialogFactory(null,true);
+//        dialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+//        //dialog.setBounds(350, 350, 200, 200);
+//        dialog.setTitle("Edit WM data ...");
+//        dialog.jValue.setEditable(true);
+//        dialog.jValue.setEnabled(true);
+//        TreeElement te = (TreeElement) node.getUserObject();
+//        String text = te.getName();
+//        String tudo[] = text.split(": ");
+//        dialog.jName.setText(tudo[0]);
+//        dialog.jValue.setText(tudo[1]);
+//        //RefineryUtilities.centerFrameOnScreen(dialog);
+//        dialog.setVisible(true);
+//        dialog.dispose();
+//        if (dialog.ok == true) {
+//           Idea id = (Idea) te.getElement();
+//           id.setName(dialog.jName.getText());
+//           id.setValue(dialog.jValue.getText());
+//           te.setName(dialog.jName.getText()+": "+dialog.jValue.getText());
+//           return(dialog.jName.getText());
+//        }
+//        else return null;
+//    }
+    
+    public static String editIdea(IdeaTreeNode node) {
         DialogFactory dialog = new DialogFactory(null,true);
         dialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         //dialog.setBounds(350, 350, 200, 200);
-        dialog.setTitle("Edit WM data ...");
+        dialog.setTitle("Edit Idea data ...");
         dialog.jValue.setEditable(true);
         dialog.jValue.setEnabled(true);
         TreeElement te = (TreeElement) node.getUserObject();

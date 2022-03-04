@@ -36,6 +36,7 @@ public class AnalysisPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form AnalysisPanel
+     * @param ac list of codelets to be analyzed at the panel
      */
     public AnalysisPanel(List<Codelet> ac) {
         initComponents();

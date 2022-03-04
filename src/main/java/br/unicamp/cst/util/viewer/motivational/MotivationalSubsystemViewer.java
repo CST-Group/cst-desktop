@@ -55,8 +55,11 @@ public class MotivationalSubsystemViewer extends javax.swing.JPanel {
     private DefaultTreeModel dtMoodCodelets;
     private DefaultTreeModel dtGoalCodelets;
     private Mind m;
+    
     /**
      * Creates new form MotivationalSubsystemViewer
+     * @param refreshTime the time used to refresh the viewer
+     * @param mind a reference to the mind being shown
      */
     public MotivationalSubsystemViewer(long refreshTime, Mind mind) {
         initComponents();

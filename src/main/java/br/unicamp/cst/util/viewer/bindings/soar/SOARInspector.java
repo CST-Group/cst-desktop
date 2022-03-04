@@ -35,6 +35,7 @@ public class SOARInspector extends javax.swing.JFrame implements Observer,IdeaEd
 
     /**
      * Creates new form MindView
+     * @param soar the JSoarCodelet to be inspected
      */
     public SOARInspector(JSoarCodelet soar) {
         initComponents();

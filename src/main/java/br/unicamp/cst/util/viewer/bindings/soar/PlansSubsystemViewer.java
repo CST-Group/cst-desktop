@@ -49,6 +49,8 @@ public class PlansSubsystemViewer extends JPanel {
 
     /**
      * Creates new form PlansSubsystemViewer
+     * @param refreshTime the time used to refresh the viewer
+     * @param mv a reference to the MindViewer in which this viewer is inserted
      */
     public PlansSubsystemViewer(long refreshTime, MindViewer mv) {
         initComponents();

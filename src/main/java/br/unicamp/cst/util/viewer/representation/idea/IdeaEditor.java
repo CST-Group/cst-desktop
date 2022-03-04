@@ -28,6 +28,8 @@ public class IdeaEditor extends javax.swing.JFrame {
 
     /**
      * Creates new form IdeaEditor
+     * @param rootId the root idea on the editor
+     * @param editable a flag indicating if the editor is suitable only for viewing of also for editing
      */
     public IdeaEditor(Idea rootId, boolean editable) {
         initComponents();

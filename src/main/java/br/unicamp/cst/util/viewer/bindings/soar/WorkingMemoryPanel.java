@@ -44,6 +44,7 @@ public class WorkingMemoryPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form WorkingMemoryPanel
+     * @param sco the reference to the JSoarCodelet to be rendered in the panel
      */
     public WorkingMemoryPanel(JSoarCodelet sco) {
         //initComponents();

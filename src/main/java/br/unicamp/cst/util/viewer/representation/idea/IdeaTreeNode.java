@@ -44,14 +44,14 @@ public class IdeaTreeNode extends DefaultMutableTreeNode {
     
     public IdeaTreeNode addRootNode(String rootNodeName) {
         Idea rootWM = Idea.createIdea(rootNodeName,"",0);
-        IdeaTreeNode root = new IdeaTreeNode(rootNodeName, TreeElement.NODE_NORMAL, rootWM, TreeElement.ICON_CONFIGURATION);
+        IdeaTreeNode root = new IdeaTreeNode(rootNodeName, TreeElement.NODE_NORMAL, rootWM, TreeElement.ICON_MIND);
         return(root);
     }
     
     public IdeaTreeNode genIdNode(Idea ido) {
         String value = "";
         if (!ido.getValue().toString().equals("")) value = " [" + ido.getValue().toString()+"]"; 
-        IdeaTreeNode idNode = new IdeaTreeNode(ido.getName()+value, TreeElement.NODE_NORMAL, ido, TreeElement.ICON_OBJECT); 
+        IdeaTreeNode idNode = new IdeaTreeNode(ido.getName()+value, TreeElement.NODE_NORMAL, ido, TreeElement.ICON_OBJECT3); 
         return(idNode);
     }
     
@@ -63,8 +63,111 @@ public class IdeaTreeNode extends DefaultMutableTreeNode {
     }
     
     public IdeaTreeNode genValNode(Idea node) {
-        IdeaTreeNode valueNode = new IdeaTreeNode(node.getName()+": "+node.getValue().toString(), TreeElement.NODE_NORMAL, node, TreeElement.ICON_QUALITYDIM);
+        IdeaTreeNode valueNode = new IdeaTreeNode(node.getName()+": "+node.getValue().toString(), TreeElement.NODE_NORMAL, node, TreeElement.ICON_PROPERTY);
         return(valueNode);
+    }
+    
+    public void resetType(Idea node) {
+        Idea category = node.get("category");
+        if (category != null && category.getValue() instanceof String) {
+            String category_type = (String) category.getValue();
+            if (category_type.equalsIgnoreCase("AbstractObject")) {
+                node.setType(0);
+            }
+            if (category_type.equalsIgnoreCase("Property")) {
+                node.setType(1);
+            }
+            else if (category_type.equalsIgnoreCase("Link")) {
+                node.setType(2);
+            }
+            else if (category_type.equalsIgnoreCase("QualityDimension")) {
+                node.setType(3);
+            }
+            else if (category_type.equalsIgnoreCase("Episode")) {
+                node.setType(4);
+            }
+            else if (category_type.equalsIgnoreCase("Composite")) {
+                node.setType(5);
+            }
+            else if (category_type.equalsIgnoreCase("Aggregate")) {
+                node.setType(6);
+            }
+            else if (category_type.equalsIgnoreCase("Configuration")) {
+                node.setType(7);
+            }
+            else node.setType(0);
+        } 
+    }
+    
+    public void representIdea(Idea node) {
+        TreeElement te = getTreeElement();
+        String value = "";
+        if (node.getValue() != null) value = node.getValue().toString();
+        resetType(node);
+        switch(node.getType()) {
+               case 0: // This type is for Idea objects
+                       if (te.getIcon() != TreeElement.ICON_MIND) 
+                          te.setIcon(TreeElement.ICON_OBJECT3);
+                       if (value.equalsIgnoreCase(""))
+                           te.setName(node.getName()); 
+                       else te.setName(node.getName()+" ["+value+"]"); 
+                       break;
+               case 1: // This type is for a Property
+                       if (te.getIcon() != TreeElement.ICON_MIND) 
+                          te.setIcon(TreeElement.ICON_PROPERTY);
+                       if (value.equalsIgnoreCase(""))
+                           te.setName(node.getName()); 
+                       else te.setName(node.getName()+": "+value);
+                       break;
+               case 2: // This type is for an object which is already referenced elsewhere (just a link)
+                       if (te.getIcon() != TreeElement.ICON_MIND) 
+                          te.setIcon(TreeElement.ICON_OBJECT2);
+                       if (value.equalsIgnoreCase(""))
+                           te.setName(node.getName()); 
+                       else te.setName(node.getName()+" [<font color=red>"+value+"</font>]"); 
+                       break;
+               case 3: // This type is for a Quality Dimension
+                       if (te.getIcon() != TreeElement.ICON_MIND) 
+                          te.setIcon(TreeElement.ICON_QUALITYDIM);
+                       if (value.equalsIgnoreCase(""))
+                           te.setName(node.getName()); 
+                       else te.setName(node.getName()+": "+value); 
+                       break;
+               case 4: // This type is for an Episode
+                       if (te.getIcon() != TreeElement.ICON_MIND) 
+                          te.setIcon(TreeElement.ICON_AFFORDANCE);
+                       if (value.equalsIgnoreCase(""))
+                           te.setName(node.getName()); 
+                       else te.setName(node.getName()+" ["+value+"]"); 
+                       break;
+               case 5: // This type is for a Composite Object
+                       if (te.getIcon() != TreeElement.ICON_MIND) 
+                          te.setIcon(TreeElement.ICON_COMPOSITE);
+                       if (value.equalsIgnoreCase(""))
+                           te.setName(node.getName()); 
+                       else te.setName(node.getName()+" ["+value+"]"); 
+                       break;        
+               case 6: // This type is for an Aggregation Object
+                       if (te.getIcon() != TreeElement.ICON_MIND) 
+                          te.setIcon(TreeElement.ICON_AGGREGATE);
+                       if (value.equalsIgnoreCase(""))
+                           te.setName(node.getName()); 
+                       else te.setName(node.getName()+" ["+value+"]"); 
+                       break;                
+               case 7: // This type is for a Configuration
+                       if (te.getIcon() != TreeElement.ICON_MIND) 
+                          te.setIcon(TreeElement.ICON_CONFIGURATION);
+                       if (value.equalsIgnoreCase(""))
+                           te.setName(node.getName()); 
+                       else te.setName(node.getName()+" ["+value+"]"); 
+                       break;
+               default: if (te.getIcon() != TreeElement.ICON_MIND) 
+                          te.setIcon(TreeElement.ICON_OBJECT3);
+                        if (value.equalsIgnoreCase(""))
+                           te.setName(node.getName()); 
+                        else te.setName(node.getName()+" ["+value+"]"); 
+                        break;
+           }
     }
     
 //    public IdeaTreeNode genValNode2(String a, String v) {
@@ -90,40 +193,29 @@ public class IdeaTreeNode extends DefaultMutableTreeNode {
         return(idNode);
     }
     
-    public IdeaTreeNode addWMNode(Idea n) {
-        if (n.isType(0) || n.isType(2)) { // n is an identifier
-                IdeaTreeNode part = addIdentifier(n);
-                return part; 
-            }
-            else { // v is a value 
-               IdeaTreeNode valueNode = addValue(n);
-               return valueNode;
-            } 
-    }
+//    public IdeaTreeNode addIdeaNode(Idea n) {
+//        IdeaTreeNode part = addIdentifier(n);
+//        return(part);        
+//    }
     
     int recursion = 0;
-    public IdeaTreeNode addIdentifier(Idea node) {
+    public IdeaTreeNode addIdeaNode(Idea node) {
         recursion++;
         IdeaTreeNode idNode = getIdNode(node);
+        idNode.representIdea(node);
         for (Idea n : node.getL()) {
-            if (n.isType(0) || n.isType(2)) { // n is an identifier
-                IdeaTreeNode part = addIdentifier(n);
-               idNode.add(part); 
-            }
-            else { // v is a value 
-               IdeaTreeNode valueNode = genValNode(n);
-               idNode.add(valueNode);
-            }  
+            IdeaTreeNode part = addIdeaNode(n);
+            idNode.add(part); 
         }
         add(idNode);
         return(idNode);    
     }
     
-    public IdeaTreeNode addValue(Idea node) {
-        IdeaTreeNode valueNode = genValNode(node);
-        add(valueNode);
-        return(valueNode); 
-    }
+//    public IdeaTreeNode addValue(Idea node) {
+//        IdeaTreeNode valueNode = genValNode(node);
+//        add(valueNode);
+//        return(valueNode); 
+//    }
     
     // The following methods: restartRootNode, addIdentifier2 and addWME are used in a new way to construct the jTree
     
@@ -145,7 +237,7 @@ public class IdeaTreeNode extends DefaultMutableTreeNode {
         repr = new CopyOnWriteArrayList<Idea>();
         ExpandStateLibrary.set(root,true);
         for (Idea wm : node.getL()) {
-            IdeaTreeNode child = root.addWMNode(wm);
+            IdeaTreeNode child = root.addIdeaNode(wm);
             ExpandStateLibrary.set(child,true);
         }
         TreeElement oldrootte = (TreeElement)root.getUserObject();

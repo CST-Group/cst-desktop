@@ -11,7 +11,6 @@
 package br.unicamp.cst.util.viewer.representation.idea;
 
 import br.unicamp.cst.representation.idea.Idea;
-import br.unicamp.cst.util.viewer.DialogFactory;
 import br.unicamp.cst.util.viewer.TreeElement;
 import br.unicamp.cst.util.viewer.MindRenderer;
 import java.awt.event.ActionEvent;
@@ -27,6 +26,7 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicReference;
 import javax.swing.JFileChooser;
 import javax.swing.JMenuItem;
@@ -52,7 +52,7 @@ public class IdeaPanel extends javax.swing.JPanel {
     public IdeaPanel(Idea rootId, boolean editable) {
         this.editable = editable;
         if (rootId != null) root = rootId;
-        else root = new Idea("InputLink","I2",0);
+        else root = new Idea("RootIdea","",0);
         initComponents();
         jsp.setViewportView(jtree);
         rootlink = new IdeaTreeNode(root.getName(),root.getValue().toString(),TreeElement.NODE_NORMAL,root,TreeElement.ICON_MIND);
@@ -79,66 +79,34 @@ public class IdeaPanel extends javax.swing.JPanel {
                         }
                         element = te.getElement();
                         Idea node = (Idea) element;
-                        if (node.isType(1)) {
-                            JPopupMenu popup = new JPopupMenu();
-                            JMenuItem jm1 = new JMenuItem("Edit Value");
-                            ActionListener al = new ActionListener() {
+                        JPopupMenu popup = new JPopupMenu();
+                        JMenuItem jm1 = new JMenuItem("Edit Idea");
+                        ActionListener al = new ActionListener() {
                                 public void actionPerformed(ActionEvent e) {
-                                    editValue(tn);
+                                    editIdea(tn);
                                 }
-                            };
-                            jm1.addActionListener(al);
-                            JMenuItem jm5 = new JMenuItem("Delete this Value");
-                            ActionListener al5;
-                            al5 = new ActionListener() {
+                        };
+                        jm1.addActionListener(al);
+                        JMenuItem jm2 = new JMenuItem("Add child Idea");
+                        ActionListener al2 = new ActionListener() {
                                 public void actionPerformed(ActionEvent e) {
-                                    deleteComponent(tn);
+                                    createIdea(tn);
                                 }
-                            };
-                            jm5.addActionListener(al5);
-                            popup.add(jm1);
-                            popup.add(jm5);
-                            popup.show(jtree, e.getX(), e.getY());
-                        }
-                        else if (node.isType(0) || node.isType(1)) {
-                            //Identifier p = (Identifier) te.getElement();
-                            JPopupMenu popup = new JPopupMenu();
-                            JMenuItem jm1 = new JMenuItem("Edit Value");
-                            ActionListener al = new ActionListener() {
-                                public void actionPerformed(ActionEvent e) {
-                                    editIdentifier(tn);
-                                }
-                            };
-                            jm1.addActionListener(al);
-                            JMenuItem jm2 = new JMenuItem("Add child Identifier");
-                            ActionListener al2 = new ActionListener() {
-                                public void actionPerformed(ActionEvent e) {
-                                    createIdentifier(tn);
-                                }
-                            };
-                            jm2.addActionListener(al2);
-                            JMenuItem jm3 = new JMenuItem("Add child value");
-                            ActionListener al3;
-                            al3 = new ActionListener() {
-                                public void actionPerformed(ActionEvent e) {
-                                    createValue(tn);
-                                }
-                            };
-                            jm3.addActionListener(al3);
-                            JMenuItem jm4 = new JMenuItem("Delete this Identifier");
-                            ActionListener al4;
-                            al4 = new ActionListener() {
+                        };
+                        jm2.addActionListener(al2);
+                        JMenuItem jm4 = new JMenuItem("Delete this Idea");
+                        ActionListener al4;
+                        al4 = new ActionListener() {
                                 public void actionPerformed(ActionEvent e) {
                                     deleteComponent(tn);
                                 }
-                            };
-                            jm4.addActionListener(al4);
-                            popup.add(jm1);
-                            popup.add(jm2);
-                            popup.add(jm3);
-                            popup.add(jm4);
-                            popup.show(jtree, e.getX(), e.getY());
-                        }
+                        };
+                        jm4.addActionListener(al4);
+                        popup.add(jm1);
+                        popup.add(jm2);
+                        popup.add(jm4);
+                        popup.show(jtree, e.getX(), e.getY());
+                        
                     }
                 }
             }};
@@ -172,12 +140,16 @@ public class IdeaPanel extends javax.swing.JPanel {
 //        }
 //    }
     
-    private void createIdentifier(IdeaTreeNode parent) {
+    private void createIdea(IdeaTreeNode parent) {
         TreeElement.reset();
-        IdeaTreeNode newao = DialogFactory.getIdentifier(parent);
+        IdeaTreeNode newao = IdeaDialogFactory.getIdea(parent);
         Idea wmparent = (Idea)parent.getTreeElement().getElement();
         Idea wmtobeadded = (Idea) newao.getTreeElement().getElement();
         wmparent.add(wmtobeadded);
+        if (wmtobeadded.getName().equalsIgnoreCase("category")) {
+               parent.resetType(wmparent);
+               parent.representIdea(wmparent);
+        }  
         //newao.getTreeElement().setExpand(true);
         //System.out.println("inputLink "+sb.inputLink);
         parent.add(newao);
@@ -187,30 +159,15 @@ public class IdeaPanel extends javax.swing.JPanel {
         restoreExpansion(jtree);
     }
     
-    private void createValue(IdeaTreeNode parent) {
-        TreeElement.reset();
-        IdeaTreeNode newao = DialogFactory.getValue(parent);
-        Idea wmparent = (Idea)parent.getTreeElement().getElement();
-        Idea wmtobeadded = (Idea) newao.getTreeElement().getElement();
-        wmparent.add(wmtobeadded);
-        //newao.getTreeElement().setExpand(true);
-        //System.out.println("inputLink "+sb.inputLink);
-        parent.add(newao);
-        ExpandStateLibrary.set(newao,true);
-        TreeModel tm = new DefaultTreeModel(rootlink);
-        jtree.setModel(tm);
-        restoreExpansion(jtree);
-    }
-    
-    private void editIdentifier(IdeaTreeNode node) {
-        DialogFactory.editIdentifier(node);
-        TreeModel tm = new DefaultTreeModel(rootlink);
-        jtree.setModel(tm);
-        restoreExpansion(jtree);
-    }
-    
-    private void editValue(IdeaTreeNode p) {
-        DialogFactory.editValue(p);
+    private void editIdea(IdeaTreeNode node) {
+        IdeaDialogFactory.editIdea(node);
+        Idea editedIdea = (Idea) node.getTreeElement().getElement();
+        if (editedIdea.getName().equalsIgnoreCase("category")) {
+            IdeaTreeNode parent = (IdeaTreeNode) node.getParent();
+            Idea parentIdea = (Idea)parent.getTreeElement().getElement();
+            parent.resetType(parentIdea);
+            parent.representIdea(parentIdea);
+        }
         TreeModel tm = new DefaultTreeModel(rootlink);
         jtree.setModel(tm);
         restoreExpansion(jtree);
@@ -304,6 +261,23 @@ public class IdeaPanel extends javax.swing.JPanel {
         return(m);
     }
     
+    private int getIntMode(String s) {
+        String mode[] = s.split("\\(");
+        String mode2[] = {""};
+        int nmode = 0;
+        int n=0;
+        if (mode.length > 1) {
+            mode2 = mode[1].split("\\)");
+            String moden = mode2[0];
+            try {
+                 nmode = Integer.parseInt(moden);
+            } catch (Exception e) {
+                    nmode = 0;
+            }
+        }
+        return(nmode);
+    }
+    
     private String getName(String splitted[]) {
         int level = getLevel(splitted);
         String almost = splitted[3*level+1];
@@ -314,8 +288,11 @@ public class IdeaPanel extends javax.swing.JPanel {
     private String getValue(String splitted[]) {
         String value = "";
         for (int i=0;i<splitted.length;i++) {
-            if (splitted[i].endsWith(":")) {
-                value = splitted[i+1];
+            
+            if (splitted[i].startsWith("[")) {
+                String casted = splitted[i];
+                String scasted[] = casted.split("\\[");
+                value = scasted[1].split("\\]")[0];
                 break;
             }
         }    
@@ -332,7 +309,7 @@ public class IdeaPanel extends javax.swing.JPanel {
              if (!filename.equals("")) {
                 File logFile = new File(filename);
 	        BufferedWriter writer = new BufferedWriter(new FileWriter(logFile, false));
-                String s = this.buildFromWMTreeNode(rootlink);
+                String s = this.buildFromIdeaTreeNode(rootlink);
                 writer.write(s);                
                 writer.close();
                 //System.out.println("Wrote to "+filename);
@@ -359,36 +336,50 @@ public class IdeaPanel extends javax.swing.JPanel {
                     String linesplitted[] = line.split(" ");
                     int level = getLevel(linesplitted);
                     mode m = getMode(linesplitted);
+                    int mo = getIntMode(linesplitted[3*level]);
                     String name = getName(linesplitted);
                     String value = getValue(linesplitted);
+                    System.out.println("mode: "+mo+" name: "+name+" value: "+value+ " level: "+level);
                     Idea ao;
                     Idea father;
                     if (level == 0) {
-                        newAO = Idea.createIdea(name,"null",0);
+                        //newAO = Idea.createIdea(name,value,mo);
+                        newAO = new Idea(name,value,mo);
                         parseAOs.add(newAO);
                     }
                     else {
-                          switch(m) {
-                                case LINK:ao = Idea.createIdea(name,"",0);
-                                               parseAOs.add(ao);
-                                               father = (Idea) parseAOs.get(level-1);
-                                               father.add(ao);
-                                               if (level >= parseAOs.size()) parseAOs.add(ao);
-                                               else parseAOs.set(level, ao);
-                                               break;
-                                case VALUE:
-                                    Idea qd = Idea.createIdea(name,value,1);
-                                           father = (Idea) parseAOs.get(level-1);
-                                           father.add(qd);
-                                           break;
-                          }                            
+                          //ao = Idea.createIdea(name,value,mo);
+                          ao = new Idea(name,value,mo);
+                          parseAOs.add(ao);
+                          father = (Idea) parseAOs.get(level-1);
+                          father.add(ao);
+                          if (level >= parseAOs.size()) parseAOs.add(ao);
+                          else parseAOs.set(level, ao);
+                            
+//                          switch(m) {
+//                                case LINK:ao = Idea.createIdea(name,"",0);
+//                                               parseAOs.add(ao);
+//                                               father = (Idea) parseAOs.get(level-1);
+//                                               father.add(ao);
+//                                               if (level >= parseAOs.size()) parseAOs.add(ao);
+//                                               else parseAOs.set(level, ao);
+//                                               break;
+//                                case VALUE:
+//                                    Idea qd = Idea.createIdea(name,value,1);
+//                                           father = (Idea) parseAOs.get(level-1);
+//                                           father.add(qd);
+//                                           break;
+//                          } 
                     }
                 }
+                String res = toStringFull(newAO);
+                System.out.println(res);
                 //notifyListeners();
                 reader.close();
                 root = newAO;
-                TreeElement oldrootte = (TreeElement)rootlink.getUserObject();
-                oldrootte.setElement(root);
+                rootlink = rootlink.restartRootNode(root);
+                //TreeElement oldrootte = (TreeElement)rootlink.getUserObject();
+                //oldrootte.setElement(root);
              }
         } catch (Exception e) { e.printStackTrace(); }
         return(newAO);
@@ -564,6 +555,14 @@ public class IdeaPanel extends javax.swing.JPanel {
         
     }
     
+    public void updateTreeOld() {
+       rootlink = rootlink.restartRootNode(root);
+       TreeModel tm = new DefaultTreeModel(rootlink);
+       ExpandStateLibrary.set(rootlink, true);
+       jtree.setModel(tm);
+       restoreExpansion(jtree);
+    }
+    
     public void updateTree() {
        rootlink = rootlink.restartRootNode(root);
        TreeModel tm = new DefaultTreeModel(rootlink);
@@ -581,7 +580,7 @@ public class IdeaPanel extends javax.swing.JPanel {
 //       restoreExpansion(jtree);
 //    }
     
-    public Idea addWMTreeNode(IdeaTreeNode node) {
+    public Idea addIdeaTreeNode2(IdeaTreeNode node) {
         TreeElement te = node.getTreeElement();
         if (te.getIcon() == TreeElement.ICON_OBJECT || te.getIcon() == TreeElement.ICON_OBJECT2 || 
             te.getIcon() == TreeElement.ICON_CONFIGURATION || te.getIcon() == TreeElement.ICON_MIND ) {
@@ -589,7 +588,7 @@ public class IdeaPanel extends javax.swing.JPanel {
             int numberofchildren = node.getChildCount();
             for (int i=0;i<numberofchildren;i++) {
                 IdeaTreeNode c = (IdeaTreeNode) node.getChildAt(i);
-                Idea e = addWMTreeNode(c);
+                Idea e = addIdeaTreeNode(c);
                 ln.add(e);
             }
             return(ln);
@@ -601,9 +600,64 @@ public class IdeaPanel extends javax.swing.JPanel {
         }
     }
     
-    public String buildFromWMTreeNode(IdeaTreeNode rootwme) {
-        Idea e = addWMTreeNode(rootwme);
-        return(e.toStringFull());
+     
+    public Idea addIdeaTreeNode(IdeaTreeNode node) {
+        TreeElement te = node.getTreeElement();
+        return((Idea)te.getElement());
+    }
+    
+    public String buildFromIdeaTreeNode(IdeaTreeNode rootwme) {
+        Idea e = addIdeaTreeNode(rootwme);
+        //return(e.toStringFull());
+        return(toStringFull(e));
+    }
+    
+    public String toStringFull(Idea id) {
+        return(toStringFull(id,false));
+    }
+    
+    public static void reset() {
+        listtoavoidloops = new CopyOnWriteArrayList<>();
+    }
+    
+    public String toStringFull(Idea id, boolean withid) {
+        reset();
+        return(toStringFull(id,1,withid));
+    }
+    
+    public String toStringPlus(Idea id,boolean withid) {
+        String appendix = "";
+        String out;
+        String value = (String) id.getValue();
+        if (value != null && !value.equals("")) appendix = " ["+value+"]";
+        if (withid) appendix += " <"+id+">";
+        out = "("+id.getType()+") "+ id.getName()+appendix;
+        return(out);
+                    
+    }
+    
+    transient static CopyOnWriteArrayList<Object> listtoavoidloops = new CopyOnWriteArrayList<>();
+    
+    public boolean already_exists(Idea id, Object o) {
+        if (o == null || id.isPrimitive(o)) return false;
+        for (Object oo : listtoavoidloops)
+           if (oo.hashCode() == o.hashCode()) return true;
+        return false;
+    }
+    
+    public String toStringFull(Idea id, int level, boolean withid) {
+        String out; 
+        out = toStringPlus(id,withid)+"\n";
+        listtoavoidloops.add(toStringPlus(id,withid));
+        for (Idea ln : id.getL()) {
+            for (int i=0;i<level;i++) out += "   ";
+            if (listtoavoidloops.contains(toStringPlus(ln,withid)) || already_exists(id,toStringPlus(ln,withid))) {
+                out += toStringPlus(ln,withid)+"\n";
+            }
+            else out += toStringFull(ln,level+1,withid);
+        }
+        return(out);
+        
     }
 
     /**

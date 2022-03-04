@@ -53,6 +53,7 @@ public class AbstractObjectEditor extends javax.swing.JFrame {
 
     /**
      * Creates new form AbstractObjectEditor
+     * @param rootAO the root object in the editor
      */
     public AbstractObjectEditor(AbstractObject rootAO) {
         root = rootAO;

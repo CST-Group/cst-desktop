@@ -47,6 +47,8 @@ public class CodeletPanel extends javax.swing.JPanel {
     /**
      * Creates new form MindPanel
      * @param m Mind to be viewed in the MindViewer Panel
+     * @param group the name of the group to be showed
+     * @param rootName the name of the root of the tree to be exhibited
      */
     public CodeletPanel(Mind m, String group, String rootName) {
         mind = m;

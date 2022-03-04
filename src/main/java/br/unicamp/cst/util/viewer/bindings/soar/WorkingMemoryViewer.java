@@ -44,6 +44,8 @@ public class WorkingMemoryViewer extends javax.swing.JFrame {
 
     /**
      * Creates new form WorkingMemoryViewer
+     * @param windowName the name appearing at the top of the viewer panel
+     * @param sco a reference to the JSoarCodelet to be viewed 
      */
     public WorkingMemoryViewer(String windowName, JSoarCodelet sco) {
         initComponents();

@@ -34,6 +34,7 @@ public class ObjectViewer extends javax.swing.JFrame {
 
     /**
      * Creates new form WorldObjectViewer
+     * @param windowName the name appearing on the top of the window
      */
     public ObjectViewer(String windowName) {
         initComponents();
