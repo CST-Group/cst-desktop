@@ -42,6 +42,15 @@ public class IdeaTreeNode extends DefaultMutableTreeNode {
         super(new TreeElement(name, TreeElement.NODE_NORMAL, name, icon_type));
     }
     
+    public IdeaTreeNode(Idea idea) {
+        super(new TreeElement(idea.getName(),TreeElement.NODE_NORMAL,idea,TreeElement.ICON_OBJECT3));
+        for (Idea i : idea.getL()) {
+            IdeaTreeNode ntn = new IdeaTreeNode(i);
+            add(ntn);
+        }
+        representIdea(idea);
+    }
+    
     public IdeaTreeNode addRootNode(String rootNodeName) {
         Idea rootWM = Idea.createIdea(rootNodeName,"",0);
         IdeaTreeNode root = new IdeaTreeNode(rootNodeName, TreeElement.NODE_NORMAL, rootWM, TreeElement.ICON_MIND);
@@ -94,6 +103,9 @@ public class IdeaTreeNode extends DefaultMutableTreeNode {
             }
             else if (category_type.equalsIgnoreCase("Configuration")) {
                 node.setType(7);
+            }
+            else if (category_type.equalsIgnoreCase("TimeStep")) {
+                node.setType(8);
             }
             else node.setType(0);
         } 
@@ -161,6 +173,13 @@ public class IdeaTreeNode extends DefaultMutableTreeNode {
                            te.setName(node.getName()); 
                        else te.setName(node.getName()+" ["+value+"]"); 
                        break;
+               case 8: // This type is for a Configuration
+                       if (te.getIcon() != TreeElement.ICON_MIND) 
+                          te.setIcon(TreeElement.ICON_TIME);
+                       if (value.equalsIgnoreCase(""))
+                           te.setName(node.getName()); 
+                       else te.setName(node.getName()+" ["+value+"]"); 
+                       break;        
                default: if (te.getIcon() != TreeElement.ICON_MIND) 
                           te.setIcon(TreeElement.ICON_OBJECT3);
                         if (value.equalsIgnoreCase(""))

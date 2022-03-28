@@ -13,6 +13,8 @@ package br.unicamp.cst.util.viewer.representation.idea;
 import br.unicamp.cst.representation.idea.Idea;
 import br.unicamp.cst.util.viewer.TreeElement;
 import br.unicamp.cst.util.viewer.MindRenderer;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -23,6 +25,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -48,6 +52,8 @@ public class IdeaPanel extends javax.swing.JPanel {
     IdeaTreeNode rootlink;
     boolean editable;
     String path=null;
+    IdeaTreeNode clipboard = null;
+    transient static CopyOnWriteArrayList<Object> listtoavoidloops = new CopyOnWriteArrayList<>();
     
     public IdeaPanel(Idea rootId, boolean editable) {
         this.editable = editable;
@@ -94,6 +100,14 @@ public class IdeaPanel extends javax.swing.JPanel {
                                 }
                         };
                         jm2.addActionListener(al2);
+                        JMenuItem jm3 = new JMenuItem("Paste Ideas in Clipboard");
+                        ActionListener al3;
+                        al3 = new ActionListener() {
+                                public void actionPerformed(ActionEvent e) {
+                                    pasteComponent(tn);
+                                }
+                        };
+                        jm3.addActionListener(al3);
                         JMenuItem jm4 = new JMenuItem("Delete this Idea");
                         ActionListener al4;
                         al4 = new ActionListener() {
@@ -102,8 +116,18 @@ public class IdeaPanel extends javax.swing.JPanel {
                                 }
                         };
                         jm4.addActionListener(al4);
+                        JMenuItem jm5 = new JMenuItem("Copy this Idea");
+                        ActionListener al5;
+                        al5 = new ActionListener() {
+                                public void actionPerformed(ActionEvent e) {
+                                    copyComponent(tn);
+                                }
+                        };
+                        jm5.addActionListener(al5);
                         popup.add(jm1);
                         popup.add(jm2);
+                        popup.add(jm5);
+                        if (clipboard != null) popup.add(jm3);
                         popup.add(jm4);
                         popup.show(jtree, e.getX(), e.getY());
                         
@@ -147,7 +171,7 @@ public class IdeaPanel extends javax.swing.JPanel {
         Idea wmtobeadded = (Idea) newao.getTreeElement().getElement();
         wmparent.add(wmtobeadded);
         if (wmtobeadded.getName().equalsIgnoreCase("category")) {
-               parent.resetType(wmparent);
+               //parent.resetType(wmparent);
                parent.representIdea(wmparent);
         }  
         //newao.getTreeElement().setExpand(true);
@@ -165,7 +189,7 @@ public class IdeaPanel extends javax.swing.JPanel {
         if (editedIdea.getName().equalsIgnoreCase("category")) {
             IdeaTreeNode parent = (IdeaTreeNode) node.getParent();
             Idea parentIdea = (Idea)parent.getTreeElement().getElement();
-            parent.resetType(parentIdea);
+            //parent.resetType(parentIdea);
             parent.representIdea(parentIdea);
         }
         TreeModel tm = new DefaultTreeModel(rootlink);
@@ -181,7 +205,57 @@ public class IdeaPanel extends javax.swing.JPanel {
             Idea wmparent = (Idea)tparent.getTreeElement().getElement();
             Idea wmtoberemoved = (Idea) tnode.getTreeElement().getElement();
             tnode.removeFromParent();
+            clipboard = tnode;
             wmparent.getL().remove(wmtoberemoved);
+            TreeModel tm = new DefaultTreeModel(rootlink);
+            jtree.setModel(tm);
+            restoreExpansion(jtree);
+        }
+    }
+    
+    private void pasteComponent(Object node) {
+        if (node == null || clipboard == null) return;
+        if (node instanceof IdeaTreeNode){
+            IdeaTreeNode tnode = (IdeaTreeNode) node;
+            //IdeaTreeNode tparent = (IdeaTreeNode) tnode.getParent();
+            //Idea wmparent = (Idea)tparent.getTreeElement().getElement();
+            //Idea wmtoberemoved = (Idea) tnode.getTreeElement().getElement();
+            //tnode.removeFromParent();
+            //clipboard.resetType(root);
+            //clipboard.representIdea(root);
+            tnode.add(clipboard);
+            Idea tidea = (Idea) tnode.getTreeElement().getElement();
+            Idea clipidea = (Idea) clipboard.getTreeElement().getElement();
+            tidea.add(clipidea);
+            //wmparent.getL().remove(wmtoberemoved);
+            ExpandStateLibrary.set(tnode,true);
+            ExpandStateLibrary.set(clipboard,true);
+            TreeModel tm = new DefaultTreeModel(rootlink);
+            jtree.setModel(tm);
+            restoreExpansion(jtree);
+        }
+    }
+    
+    private static Idea clone(Idea orig) {
+        Idea newnode;
+        newnode = new Idea(orig.getName(), orig.getValue(), orig.getType());
+        for (Idea i : orig.getL()) {
+            Idea ni = clone(i);
+            newnode.add(ni);
+        }
+        return newnode;
+    }
+    
+    private void copyComponent(Object node) {
+        if (node == null) return;
+        if (node instanceof IdeaTreeNode){
+            IdeaTreeNode tnode = (IdeaTreeNode) node;
+            Idea tidea = (Idea) tnode.getTreeElement().getElement();
+            Idea copyIdea = clone(tidea);
+            IdeaTreeNode newNode = new IdeaTreeNode(copyIdea);
+            //newNode.resetType(tidea);
+            newNode.representIdea(tidea);
+            clipboard = newNode;
             TreeModel tm = new DefaultTreeModel(rootlink);
             jtree.setModel(tm);
             restoreExpansion(jtree);
@@ -300,6 +374,11 @@ public class IdeaPanel extends javax.swing.JPanel {
     }
 
     public void save() {
+        Gson gson = new GsonBuilder()
+                //.registerTypeAdapter(Idea.class, new InterfaceAdapter<Idea>())
+                             .setPrettyPrinting().create();
+        String ss = gson.toJson(root);
+        //System.out.println(ss);
         String filename = "";
         try {JFileChooser chooser = new JFileChooser(path);
              if (chooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
@@ -309,8 +388,9 @@ public class IdeaPanel extends javax.swing.JPanel {
              if (!filename.equals("")) {
                 File logFile = new File(filename);
 	        BufferedWriter writer = new BufferedWriter(new FileWriter(logFile, false));
-                String s = this.buildFromIdeaTreeNode(rootlink);
-                writer.write(s);                
+                //String s = this.buildFromIdeaTreeNode(rootlink);
+                //writer.write(s);                
+                writer.write(ss);
                 writer.close();
                 //System.out.println("Wrote to "+filename);
                 //System.out.println(s);
@@ -330,7 +410,54 @@ public class IdeaPanel extends javax.swing.JPanel {
                   path = filename;
              }
              if (!filename.equals("")) {
-                File logFile = new File(filename);
+//                File logFile = new File(filename);
+//	        BufferedReader reader = new BufferedReader(new FileReader(logFile));
+//                while ((line = reader.readLine()) != null) {
+//                    String linesplitted[] = line.split(" ");
+//                    int level = getLevel(linesplitted);
+//                    mode m = getMode(linesplitted);
+//                    int mo = getIntMode(linesplitted[3*level]);
+//                    String name = getName(linesplitted);
+//                    String value = getValue(linesplitted);
+//                    System.out.println("mode: "+mo+" name: "+name+" value: "+value+ " level: "+level);
+//                    Idea ao;
+//                    Idea father;
+//                    if (level == 0) {
+//                        //newAO = Idea.createIdea(name,value,mo);
+//                        newAO = new Idea(name,value,mo);
+//                        parseAOs.add(newAO);
+//                    }
+//                    else {
+//                          //ao = Idea.createIdea(name,value,mo);
+//                          ao = new Idea(name,value,mo);
+//                          parseAOs.add(ao);
+//                          father = (Idea) parseAOs.get(level-1);
+//                          father.add(ao);
+//                          if (level >= parseAOs.size()) parseAOs.add(ao);
+//                          else parseAOs.set(level, ao);
+//                    }
+//                }
+                newAO = loadFileJson(filename);
+                //newAO = 
+                //String res = toStringFull(newAO);
+                //System.out.println(res);
+                //notifyListeners();
+//                reader.close();
+                root = newAO;
+                rootlink = rootlink.restartRootNode(root);
+                //TreeElement oldrootte = (TreeElement)rootlink.getUserObject();
+                //oldrootte.setElement(root);
+             }
+        } catch (Exception e) { e.printStackTrace(); }
+        return(newAO);
+    }
+    
+    Idea loadFile(String filename) {
+        String line;
+        Idea newAO = null;
+        List<Idea> parseAOs = new ArrayList<Idea>();
+        File logFile = new File(filename);
+        try {
 	        BufferedReader reader = new BufferedReader(new FileReader(logFile));
                 while ((line = reader.readLine()) != null) {
                     String linesplitted[] = line.split(" ");
@@ -355,34 +482,23 @@ public class IdeaPanel extends javax.swing.JPanel {
                           father.add(ao);
                           if (level >= parseAOs.size()) parseAOs.add(ao);
                           else parseAOs.set(level, ao);
-                            
-//                          switch(m) {
-//                                case LINK:ao = Idea.createIdea(name,"",0);
-//                                               parseAOs.add(ao);
-//                                               father = (Idea) parseAOs.get(level-1);
-//                                               father.add(ao);
-//                                               if (level >= parseAOs.size()) parseAOs.add(ao);
-//                                               else parseAOs.set(level, ao);
-//                                               break;
-//                                case VALUE:
-//                                    Idea qd = Idea.createIdea(name,value,1);
-//                                           father = (Idea) parseAOs.get(level-1);
-//                                           father.add(qd);
-//                                           break;
-//                          } 
                     }
                 }
-                String res = toStringFull(newAO);
-                System.out.println(res);
-                //notifyListeners();
                 reader.close();
-                root = newAO;
-                rootlink = rootlink.restartRootNode(root);
-                //TreeElement oldrootte = (TreeElement)rootlink.getUserObject();
-                //oldrootte.setElement(root);
-             }
-        } catch (Exception e) { e.printStackTrace(); }
+        } catch (Exception e) {
+        }
         return(newAO);
+    }
+    
+    Idea loadFileJson(String filename) {
+        Gson gson = new GsonBuilder()
+                //.registerTypeAdapter(Idea.class, new InterfaceAdapter<Idea>())
+                             .setPrettyPrinting().create();
+        String content="";
+        try{content= new String ( Files.readAllBytes( Paths.get(filename) ) );}catch(Exception e){}
+        //System.out.println(content);
+        Idea id = gson.fromJson(content,Idea.class);
+        return(id);
     }
     
     private void expandNode(JTree tree, IdeaTreeNode node) {
@@ -629,14 +745,17 @@ public class IdeaPanel extends javax.swing.JPanel {
         String appendix = "";
         String out;
         String value = (String) id.getValue();
-        if (value != null && !value.equals("")) appendix = " ["+value+"]";
+        if (value != null && !value.equals("")) {
+            if (id.getType() == 1) appendix = ": "+value;
+            else appendix = " ["+value+"]";
+        }
         if (withid) appendix += " <"+id+">";
         out = "("+id.getType()+") "+ id.getName()+appendix;
         return(out);
                     
     }
     
-    transient static CopyOnWriteArrayList<Object> listtoavoidloops = new CopyOnWriteArrayList<>();
+    
     
     public boolean already_exists(Idea id, Object o) {
         if (o == null || id.isPrimitive(o)) return false;

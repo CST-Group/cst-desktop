@@ -110,6 +110,9 @@ public class MindRenderer extends DefaultTreeCellRenderer {
             case TreeElement.ICON_CONFIGURATION:    
                 img = new ImageIcon(this.getClass().getClassLoader().getResource("configuration.png"));
                 break;     
+            case TreeElement.ICON_TIME:    
+                img = new ImageIcon(this.getClass().getClassLoader().getResource("time-machine.png"));
+                break;         
         }
         setOpenIcon(img);
         setClosedIcon(img);
