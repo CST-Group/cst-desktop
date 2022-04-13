@@ -107,7 +107,15 @@ public class IdeaTreeNode extends DefaultMutableTreeNode {
             else if (category_type.equalsIgnoreCase("TimeStep")) {
                 node.setType(8);
             }
-            else node.setType(0);
+            else if (category_type.equalsIgnoreCase("PropertyCategory")) {
+                node.setType(9);
+            }
+            else if (category_type.equalsIgnoreCase("ObjectCategory")) {
+                node.setType(10);
+            }
+            else if (category_type.equalsIgnoreCase("EpisodeCategory")) {
+                node.setType(11);
+            }
         } 
     }
     
@@ -173,9 +181,30 @@ public class IdeaTreeNode extends DefaultMutableTreeNode {
                            te.setName(node.getName()); 
                        else te.setName(node.getName()+" ["+value+"]"); 
                        break;
-               case 8: // This type is for a Configuration
+               case 8: // This type is for a TimeStep
                        if (te.getIcon() != TreeElement.ICON_MIND) 
                           te.setIcon(TreeElement.ICON_TIME);
+                       if (value.equalsIgnoreCase(""))
+                           te.setName(node.getName()); 
+                       else te.setName(node.getName()+" ["+value+"]"); 
+                       break;
+               case 9: // This type is for a PropertyCategory
+                       if (te.getIcon() != TreeElement.ICON_MIND) 
+                          te.setIcon(TreeElement.ICON_PROPERTYCATEGORY);
+                       if (value.equalsIgnoreCase(""))
+                           te.setName(node.getName()); 
+                       else te.setName(node.getName()+": "+value); 
+                       break;        
+               case 10: // This type is for a ObjectCategory
+                       if (te.getIcon() != TreeElement.ICON_MIND) 
+                          te.setIcon(TreeElement.ICON_OBJECTCATEGORY);
+                       if (value.equalsIgnoreCase(""))
+                           te.setName(node.getName()); 
+                       else te.setName(node.getName()+" ["+value+"]"); 
+                       break;
+               case 11: // This type is for a EpisodeCategory
+                       if (te.getIcon() != TreeElement.ICON_MIND) 
+                          te.setIcon(TreeElement.ICON_EPISODECATEGORY);
                        if (value.equalsIgnoreCase(""))
                            te.setName(node.getName()); 
                        else te.setName(node.getName()+" ["+value+"]"); 
@@ -183,7 +212,7 @@ public class IdeaTreeNode extends DefaultMutableTreeNode {
                default: if (te.getIcon() != TreeElement.ICON_MIND) 
                           te.setIcon(TreeElement.ICON_OBJECT3);
                         if (value.equalsIgnoreCase(""))
-                           te.setName(node.getName()); 
+                           te.setName(node.getName());         
                         else te.setName(node.getName()+" ["+value+"]"); 
                         break;
            }
