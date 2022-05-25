@@ -121,7 +121,19 @@ public class MindRenderer extends DefaultTreeCellRenderer {
                 break;
             case TreeElement.ICON_EPISODECATEGORY:    
                 img = new ImageIcon(this.getClass().getClassLoader().getResource("episodeCategory.png"));
+                break;
+            case TreeElement.ICON_PROPERTYPOSSIBILITY:    
+                img = new ImageIcon(this.getClass().getClassLoader().getResource("property-p.png"));
+                break;
+            case TreeElement.ICON_OBJECTPOSSIBILITY:    
+                img = new ImageIcon(this.getClass().getClassLoader().getResource("object-p.png"));
+                break;
+            case TreeElement.ICON_EPISODEPOSSIBILITY:    
+                img = new ImageIcon(this.getClass().getClassLoader().getResource("episode-p.png"));
                 break;    
+            case TreeElement.ICON_OBJECTEXISTENCE:    
+                img = new ImageIcon(this.getClass().getClassLoader().getResource("object-e.png"));
+                break;        
         }
         setOpenIcon(img);
         setClosedIcon(img);

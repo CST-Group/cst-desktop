@@ -116,6 +116,15 @@ public class IdeaTreeNode extends DefaultMutableTreeNode {
             else if (category_type.equalsIgnoreCase("EpisodeCategory")) {
                 node.setType(11);
             }
+            else if (category_type.equalsIgnoreCase("PropertyPossibility")) {
+                node.setType(12);
+            }
+            else if (category_type.equalsIgnoreCase("ObjectPossibility")) {
+                node.setType(13);
+            }
+            else if (category_type.equalsIgnoreCase("EpisodePossibility")) {
+                node.setType(14);
+            }
         } 
     }
     
@@ -127,7 +136,7 @@ public class IdeaTreeNode extends DefaultMutableTreeNode {
         switch(node.getType()) {
                case 0: // This type is for Idea objects
                        if (te.getIcon() != TreeElement.ICON_MIND) 
-                          te.setIcon(TreeElement.ICON_OBJECT3);
+                          te.setIcon(TreeElement.ICON_OBJECTEXISTENCE);
                        if (value.equalsIgnoreCase(""))
                            te.setName(node.getName()); 
                        else te.setName(node.getName()+" ["+value+"]"); 
@@ -208,7 +217,28 @@ public class IdeaTreeNode extends DefaultMutableTreeNode {
                        if (value.equalsIgnoreCase(""))
                            te.setName(node.getName()); 
                        else te.setName(node.getName()+" ["+value+"]"); 
+                       break; 
+               case 12: // This type is for a PropertyCategory
+                       if (te.getIcon() != TreeElement.ICON_MIND) 
+                          te.setIcon(TreeElement.ICON_PROPERTYPOSSIBILITY);
+                       if (value.equalsIgnoreCase(""))
+                           te.setName(node.getName()); 
+                       else te.setName(node.getName()+": "+value); 
                        break;        
+               case 13: // This type is for a ObjectCategory
+                       if (te.getIcon() != TreeElement.ICON_MIND) 
+                          te.setIcon(TreeElement.ICON_OBJECTPOSSIBILITY);
+                       if (value.equalsIgnoreCase(""))
+                           te.setName(node.getName()); 
+                       else te.setName(node.getName()+" ["+value+"]"); 
+                       break;
+               case 14: // This type is for a EpisodeCategory
+                       if (te.getIcon() != TreeElement.ICON_MIND) 
+                          te.setIcon(TreeElement.ICON_EPISODEPOSSIBILITY);
+                       if (value.equalsIgnoreCase(""))
+                           te.setName(node.getName()); 
+                       else te.setName(node.getName()+" ["+value+"]"); 
+                       break;         
                default: if (te.getIcon() != TreeElement.ICON_MIND) 
                           te.setIcon(TreeElement.ICON_OBJECT3);
                         if (value.equalsIgnoreCase(""))

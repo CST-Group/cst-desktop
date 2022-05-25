@@ -25,6 +25,7 @@ public class IdeaEditor extends javax.swing.JFrame {
     IdeaPanel wmp;
     Idea root;
     List<IdeaEditorListener> listeners;
+    public boolean finished = false;
 
     /**
      * Creates new form IdeaEditor
@@ -81,9 +82,6 @@ public class IdeaEditor extends javax.swing.JFrame {
         mClose = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
 
         zoom_in.setIcon(new javax.swing.ImageIcon(getClass().getResource("/zoom-in-icon.png"))); // NOI18N
@@ -200,7 +198,10 @@ public class IdeaEditor extends javax.swing.JFrame {
 
     private void mCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mCloseActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+        finished = true;
+        System.out.println("Setting finished to "+finished);
+        //this.dispose();
+        //this.setVisible(false);
     }//GEN-LAST:event_mCloseActionPerformed
 
     private void mLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mLoadActionPerformed

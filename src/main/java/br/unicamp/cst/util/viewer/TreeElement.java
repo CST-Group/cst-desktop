@@ -55,6 +55,11 @@ public class TreeElement {
     public static final int ICON_PROPERTYCATEGORY = 21;
     public static final int ICON_OBJECTCATEGORY = 22;
     public static final int ICON_EPISODECATEGORY = 23;
+    public static final int ICON_PROPERTYPOSSIBILITY = 24;
+    public static final int ICON_OBJECTPOSSIBILITY = 25;
+    public static final int ICON_EPISODEPOSSIBILITY = 26;
+    public static final int ICON_OBJECTEXISTENCE = 27;
+    
 
    
     public TreeElement(String name, int node_type, Object element, int typeIcon) {
