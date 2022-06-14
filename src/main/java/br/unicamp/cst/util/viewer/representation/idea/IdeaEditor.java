@@ -15,6 +15,8 @@ import br.unicamp.cst.representation.idea.Idea;
 import java.util.List;
 
 import java.awt.BorderLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  *
@@ -25,7 +27,7 @@ public class IdeaEditor extends javax.swing.JFrame {
     IdeaPanel wmp;
     Idea root;
     List<IdeaEditorListener> listeners;
-    public boolean finished = false;
+    public boolean finished;
 
     /**
      * Creates new form IdeaEditor
@@ -49,6 +51,12 @@ public class IdeaEditor extends javax.swing.JFrame {
         }
         
         pack();
+        finished = false;
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent we) {
+                finished = true;
+            }
+        });
     }
     
     public void addListener(IdeaEditorListener listener) {
@@ -198,10 +206,9 @@ public class IdeaEditor extends javax.swing.JFrame {
 
     private void mCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mCloseActionPerformed
         // TODO add your handling code here:
-        finished = true;
-        System.out.println("Setting finished to "+finished);
+        this.finished = true;
         //this.dispose();
-        //this.setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_mCloseActionPerformed
 
     private void mLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mLoadActionPerformed

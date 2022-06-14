@@ -57,6 +57,11 @@ public class IdeaDialogFactory extends javax.swing.JDialog {
         jCancel = new javax.swing.JButton();
         jType = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jCategory = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jScope = new javax.swing.JComboBox<>();
+        jTypeEnable = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -98,6 +103,30 @@ public class IdeaDialogFactory extends javax.swing.JDialog {
 
         jLabel1.setText("Type:");
 
+        jCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCategoryActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Category:");
+
+        jLabel5.setText("Scope:");
+
+        jScope.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Possibility", "Existence", "Law" }));
+        jScope.setSelectedIndex(1);
+        jScope.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jScopeActionPerformed(evt);
+            }
+        });
+
+        jTypeEnable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTypeEnableActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,17 +140,24 @@ public class IdeaDialogFactory extends javax.swing.JDialog {
                             .addComponent(jLabel3)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCategory)
                     .addComponent(jType)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jOK)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jCancel))
                     .addComponent(jName)
-                    .addComponent(jValue))
-                .addGap(46, 46, 46))
+                    .addComponent(jValue)
+                    .addComponent(jScope, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTypeEnable)
+                .addGap(15, 15, 15))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,10 +171,20 @@ public class IdeaDialogFactory extends javax.swing.JDialog {
                     .addComponent(jLabel3)
                     .addComponent(jValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1))
+                    .addComponent(jTypeEnable))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                    .addComponent(jCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jScope, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jOK)
                     .addComponent(jCancel))
@@ -171,6 +217,19 @@ public class IdeaDialogFactory extends javax.swing.JDialog {
     private void jTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTypeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTypeActionPerformed
+
+    private void jCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCategoryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCategoryActionPerformed
+
+    private void jScopeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jScopeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jScopeActionPerformed
+
+    private void jTypeEnableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTypeEnableActionPerformed
+        jType.setEditable(jTypeEnable.isSelected());
+        jType.setEnabled(jTypeEnable.isSelected());
+    }//GEN-LAST:event_jTypeEnableActionPerformed
     
     public static IdeaTreeNode getIdea(IdeaTreeNode baseNode) {
 
@@ -182,18 +241,27 @@ public class IdeaDialogFactory extends javax.swing.JDialog {
     dialog.jName.setEnabled(true);
     dialog.jValue.setEditable(true);
     dialog.jValue.setEnabled(true);
-    dialog.jType.setEditable(true);
-    dialog.jType.setEnabled(true);
+    dialog.jType.setEditable(false);
+    dialog.jType.setEnabled(false);
     //RefineryUtilities.centerFrameOnScreen(dialog);
     dialog.setVisible(true);
     dialog.dispose();
     if (dialog.ok == true) {
         String newname = dialog.jName.getText();
         String newvalue = dialog.jValue.getText();
-        int newtype;
-        try {newtype = Integer.parseInt(dialog.jType.getText());
-        } catch (Exception e) {newtype = 0;}
-        Idea newwmnode = new Idea(newname,newvalue,newtype);
+        String newcategory = dialog.jCategory.getText();
+        int newscope;
+        newscope = dialog.jScope.getSelectedIndex();
+        Idea newwmnode;
+        if (!dialog.jType.isEditable()) {
+            newwmnode = new Idea(newname,newvalue,newcategory,newscope);
+        }
+        else {
+            int newtype;
+            try {newtype = Integer.parseInt(dialog.jType.getText());
+            } catch (Exception e) {newtype = 0;}
+            newwmnode = new Idea(newname,newvalue,newtype,newcategory,newscope);
+        }
         IdeaTreeNode newnode = baseNode.addIdeaNode(newwmnode);
         newnode.representIdea(newwmnode);
         return(newnode);
@@ -208,13 +276,16 @@ public class IdeaDialogFactory extends javax.swing.JDialog {
         dialog.setTitle("Edit Idea data ...");
         dialog.jValue.setEditable(true);
         dialog.jValue.setEnabled(true);
-        dialog.jType.setEnabled(true);
+        dialog.jType.setEnabled(false);
+        dialog.jType.setEditable(false);
         TreeElement te = (TreeElement) node.getUserObject();
         Idea idea = (Idea) te.getElement();
         String text = te.getName();
         dialog.jName.setText(idea.getName());
         dialog.jValue.setText(String.valueOf(idea.getValue()));
         dialog.jType.setText(String.valueOf(idea.getType()));
+        dialog.jCategory.setText(idea.getCategory());
+        dialog.jScope.setSelectedIndex(idea.getScope());
         //RefineryUtilities.centerFrameOnScreen(dialog);
         dialog.setVisible(true);
         dialog.dispose();
@@ -222,9 +293,15 @@ public class IdeaDialogFactory extends javax.swing.JDialog {
            Idea id = (Idea) te.getElement();
            id.setName(dialog.jName.getText());
            id.setValue(dialog.jValue.getText());
+           id.setCategory(dialog.jCategory.getText());
+           id.setScope(dialog.jScope.getSelectedIndex());
            int type;
-           try {type = Integer.parseInt(dialog.jType.getText());
-           } catch (Exception e) {type = 0;}
+           if (dialog.jType.isEditable()) {
+               try {type = Integer.parseInt(dialog.jType.getText());
+               } catch (Exception e) {type = id.guessType(id.getCategory(),id.getScope());}
+           }
+           else 
+               type = id.guessType(id.getCategory(),id.getScope());
            id.setType(type);
            node.representIdea(id);
            return(dialog.jName.getText());
@@ -234,12 +311,17 @@ public class IdeaDialogFactory extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jCancel;
+    private javax.swing.JTextField jCategory;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField jName;
     private javax.swing.JButton jOK;
+    private javax.swing.JComboBox<String> jScope;
     private javax.swing.JTextField jType;
+    private javax.swing.JCheckBox jTypeEnable;
     private javax.swing.JTextField jValue;
     // End of variables declaration//GEN-END:variables
 }

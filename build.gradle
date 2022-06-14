@@ -10,7 +10,7 @@ description = "CST-Desktop"
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-version = '1.0.3'
+version = '1.0.4'
 
 repositories {
     flatDir {
