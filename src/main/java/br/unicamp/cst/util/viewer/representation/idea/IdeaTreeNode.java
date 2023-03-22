@@ -51,6 +51,15 @@ public class IdeaTreeNode extends DefaultMutableTreeNode {
         representIdea(idea);
     }
     
+    public IdeaTreeNode(String fullname, Idea idea) {
+        super(new TreeElement(fullname+"."+idea.getName(),TreeElement.NODE_NORMAL,idea,TreeElement.ICON_OBJECT3));
+        for (Idea i : idea.getL()) {
+            IdeaTreeNode ntn = new IdeaTreeNode(fullname+"."+idea.getName(),i);
+            add(ntn);
+        }
+        representIdea(idea);
+    }
+    
     public IdeaTreeNode addRootNode(String rootNodeName) {
         Idea rootWM = Idea.createIdea(rootNodeName,"",0);
         IdeaTreeNode root = new IdeaTreeNode(rootNodeName, TreeElement.NODE_NORMAL, rootWM, TreeElement.ICON_MIND);

@@ -156,5 +156,26 @@ public class TreeElement {
         this.id_node = id_node;
     }
     
+    public static int iconByType(int type) {
+        switch(type) {
+               case 0: return(ICON_OBJECTEXISTENCE);
+               case 1: return(ICON_PROPERTY);
+               case 2: return(ICON_OBJECT2);
+               case 3: return(ICON_QUALITYDIM);
+               case 4: return(ICON_AFFORDANCE);
+               case 5: return(ICON_COMPOSITE);
+               case 6: return(ICON_AGGREGATE);
+               case 7: return(ICON_CONFIGURATION);
+               case 8: return(ICON_TIME);
+               case 9: return(ICON_PROPERTYCATEGORY);
+               case 10: return(ICON_OBJECTCATEGORY);
+               case 11: return(ICON_EPISODECATEGORY);
+               case 12: return(ICON_PROPERTYPOSSIBILITY);
+               case 13: return(ICON_OBJECTPOSSIBILITY);
+               case 14: return(ICON_EPISODEPOSSIBILITY);
+               default: return(ICON_OBJECT3);
+           }
+    }
+    
     
 }

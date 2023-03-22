@@ -16,6 +16,7 @@ import br.unicamp.cst.representation.owrl.Property;
 import br.unicamp.cst.representation.owrl.QualityDimension;
 import br.unicamp.cst.representation.idea.Idea;
 import br.unicamp.cst.support.ToString;
+import br.unicamp.cst.util.viewer.representation.idea.IdeaTreeNode;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
@@ -24,6 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreeNode;
 
 /**
  *
@@ -210,21 +212,12 @@ public class ObjectTreeNode extends DefaultMutableTreeNode {
     
     private DefaultMutableTreeNode addIdea(String fullname, Idea wo) {
         DefaultMutableTreeNode objectNode;
-        switch(wo.getType()) {
-            default:
-            case 0: objectNode = addItem(fullname,wo.getValue().toString(),wo,TreeElement.ICON_OBJECT3);
-                    break;
-            case 1: objectNode = addItem(fullname,wo.getValue().toString(),wo,TreeElement.ICON_QUALITYDIM);
-                    break;
-            case 2: objectNode = addItem(fullname,wo.getValue().toString(),wo,TreeElement.ICON_OBJECT2);
-                    break;
-        }
-        if (wo.getType() == 0)
+        objectNode = addItem(fullname,wo.getValue().toString(),wo,TreeElement.iconByType(wo.getType()));
         for (Idea oo : wo.getL()) {
             DefaultMutableTreeNode part = addIdea(fullname+"."+oo.getName(),oo);
             objectNode.add(part);
         }
         return(objectNode);
-    }    
+    }  
     
 }

@@ -243,11 +243,15 @@ public class MemoryInspector extends javax.swing.JFrame {
     }
     
     public void updateIdea(Idea ao, String name) {
-        if (ao.getType() == 1) updateString(ao.getValue().toString(),name);
-        else {
-            if (!ao.getName().equals(ToString.getSimpleName(name))) updateString(ao.getName(),name);
-            else updateString("",name);
-        }
+//        if (ao.getType() == 1) updateString(ao.getValue().toString(),name);
+//        else {
+//            if (!ao.getName().equals(ToString.getSimpleName(name))) updateString(ao.getName(),name);
+//            else updateString("",name);
+//        }
+        String bracketvalue = "";
+        if (!ao.getValue().equals("")) bracketvalue = " ["+ao.getValue()+"]";
+        if (!ao.getName().equals(ToString.getSimpleName(name))) updateString(ao.getName()+bracketvalue,name);
+        else updateString(ao.getValue().toString(),name);
         List<Idea> parts = ao.getL();
         for (Idea oo : parts) {
             updateIdea(oo,name+"."+oo.getName());
@@ -256,6 +260,7 @@ public class MemoryInspector extends javax.swing.JFrame {
     
     public void updateObject(Object o, String name) {
         if (!nodeAlreadyExists(name)) {
+            System.out.println("Trying to include node with type "+o.getClass().getName()+" with name "+name);
             includeNode(o,name);
             return;
         }
