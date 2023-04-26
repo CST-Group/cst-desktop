@@ -59,6 +59,9 @@ public class TreeElement {
     public static final int ICON_OBJECTPOSSIBILITY = 25;
     public static final int ICON_EPISODEPOSSIBILITY = 26;
     public static final int ICON_OBJECTEXISTENCE = 27;
+    public static final int ICON_ACTIONPOSSIBILITY = 28;
+    public static final int ICON_ACTIONEXISTENCE = 29;
+    public static final int ICON_ACTIONCATEGORY = 30;
     
 
    
@@ -173,6 +176,9 @@ public class TreeElement {
                case 12: return(ICON_PROPERTYPOSSIBILITY);
                case 13: return(ICON_OBJECTPOSSIBILITY);
                case 14: return(ICON_EPISODEPOSSIBILITY);
+               case 15: return(ICON_ACTIONPOSSIBILITY);
+               case 16: return(ICON_ACTIONEXISTENCE);
+               case 17: return(ICON_ACTIONCATEGORY);
                default: return(ICON_OBJECT3);
            }
     }
