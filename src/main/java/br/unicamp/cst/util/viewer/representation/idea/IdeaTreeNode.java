@@ -247,6 +247,27 @@ public class IdeaTreeNode extends DefaultMutableTreeNode {
                        if (value.equalsIgnoreCase(""))
                            te.setName(node.getName()); 
                        else te.setName(node.getName()+" ["+value+"]"); 
+                       break;   
+               case 15: // This type is for a ActionPossibility
+                       if (te.getIcon() != TreeElement.ICON_MIND) 
+                          te.setIcon(TreeElement.ICON_ACTIONPOSSIBILITY);
+                       if (value.equalsIgnoreCase(""))
+                           te.setName(node.getName()); 
+                       else te.setName(node.getName()+" ["+value+"]"); 
+                       break; 
+               case 16: // This type is for a ActionExistence
+                       if (te.getIcon() != TreeElement.ICON_MIND) 
+                          te.setIcon(TreeElement.ICON_ACTIONEXISTENCE);
+                       if (value.equalsIgnoreCase(""))
+                           te.setName(node.getName()); 
+                       else te.setName(node.getName()+" ["+value+"]"); 
+                       break; 
+               case 17: // This type is for a ActionCategory
+                       if (te.getIcon() != TreeElement.ICON_MIND) 
+                          te.setIcon(TreeElement.ICON_ACTIONCATEGORY);
+                       if (value.equalsIgnoreCase(""))
+                           te.setName(node.getName()); 
+                       else te.setName(node.getName()+" ["+value+"]"); 
                        break;         
                default: if (te.getIcon() != TreeElement.ICON_MIND) 
                           te.setIcon(TreeElement.ICON_OBJECT3);
