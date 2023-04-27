@@ -28,6 +28,7 @@ import java.io.FileWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -670,7 +671,10 @@ public class IdeaPanel extends javax.swing.JPanel {
     }
     
     public void updateTree() {
+       
+       
        rootlink = rootlink.restartRootNode(root);
+       rootlink.sort();
        TreeModel tm = new DefaultTreeModel(rootlink);
        ExpandStateLibrary.set(rootlink, true);
        jtree.setModel(tm);

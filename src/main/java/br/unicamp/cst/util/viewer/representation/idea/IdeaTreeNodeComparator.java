@@ -65,11 +65,16 @@ public class IdeaTreeNodeComparator implements Comparator {
             }
             if (te1.getName().startsWith("operator") && !te2.getName().startsWith("operator")) return(1);
             else if(!te1.getName().startsWith("operator") && te2.getName().startsWith("operator")) return(-1); 
-            else if (te1.getIcon() == te2.getIcon() || te1.getIcon() == 2 && te2.getIcon() == 18 ||
-                     te1.getIcon() == 18 && te2.getIcon() == 2) {
+            else if (te1.getIcon() == TreeElement.ICON_GOAL && te2.getIcon() != TreeElement.ICON_GOAL) return(-1);
+            else if (te1.getIcon() != TreeElement.ICON_GOAL && te2.getIcon() == TreeElement.ICON_GOAL) return(1);
+            else if (te1.getIcon() == te2.getIcon() || 
+                    te1.getIcon() == TreeElement.ICON_OBJECT && te2.getIcon() == TreeElement.ICON_OBJECT2 ||
+                    te1.getIcon() == TreeElement.ICON_OBJECT2 && te2.getIcon() == TreeElement.ICON_OBJECT) {
                 return te1.getNamePlusValuePlusId().compareTo(te2.getNamePlusValuePlusId());
             }    
-            else if (te1.getIcon() == 2 && te2.getIcon() == 5 || te1.getIcon() == 2 && te2.getIcon() == 18 || te1.getIcon() == 18 && te2.getIcon() == 5 ) {
+            else if (te1.getIcon() == TreeElement.ICON_OBJECT && te2.getIcon() == TreeElement.ICON_QUALITYDIM || 
+                    te1.getIcon() == TreeElement.ICON_OBJECT && te2.getIcon() == TreeElement.ICON_OBJECT2 || 
+                    te1.getIcon() == TreeElement.ICON_OBJECT2 && te2.getIcon() == TreeElement.ICON_QUALITYDIM ) {
                 return(-1);
             }
             else return(1);

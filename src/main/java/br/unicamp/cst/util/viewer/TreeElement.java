@@ -64,7 +64,27 @@ public class TreeElement {
     public static final int ICON_ACTIONCATEGORY = 30;
     public static final int ICON_GOAL = 31;
     
-
+    public static Object[][] table = { // Table with pairs icon/extended text mode
+        {ICON_OBJECTEXISTENCE, 0},   // 0 AbstractObject - Existence
+        {ICON_PROPERTY, 1},          // 1 Property - Existence
+        {ICON_OBJECT2, 2},           // 2 Link
+        {ICON_QUALITYDIM, 1},        // 3 Quality Dimension
+        {ICON_AFFORDANCE, 0},        // 4 Episode - Existence
+        {ICON_COMPOSITE, 0},         // 5 Composite
+        {ICON_AGGREGATE, 0},         // 6 Agregate
+        {ICON_CONFIGURATION, 0},     // 7 Configuration
+        {ICON_TIME, 0},              // 8 TimeStep
+        {ICON_PROPERTYCATEGORY, 1},  // 9 Property - Category
+        {ICON_OBJECTCATEGORY, 0},    // 10 AbstractObject - Category
+        {ICON_EPISODECATEGORY, 0},   // 11 Episode - Category
+        {ICON_PROPERTYPOSSIBILITY, 1}, // 12 Property - Possibility
+        {ICON_OBJECTPOSSIBILITY, 0},   // 13 AbstractObject - Possibility
+        {ICON_EPISODEPOSSIBILITY, 0},  // 14 Episode - Possibility
+        {ICON_ACTIONPOSSIBILITY, 0},   // 15 Action - Possibility
+        {ICON_ACTIONEXISTENCE, 0},     // 16 Action - Existence
+        {ICON_ACTIONCATEGORY,0},       // 17 Action - Category
+        {ICON_GOAL,0},                 // 18 Goal
+    };
    
     public TreeElement(String name, int node_type, Object element, int typeIcon) {
         //this(name,node_type,element,typeIcon,0);

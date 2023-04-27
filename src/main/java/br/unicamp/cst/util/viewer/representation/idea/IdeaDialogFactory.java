@@ -14,12 +14,6 @@ import br.unicamp.cst.util.viewer.*;
 import br.unicamp.cst.representation.idea.Idea;
 import java.awt.Dialog;
 
-import org.jfree.ui.RefineryUtilities;
-
-import br.unicamp.cst.representation.owrl.AbstractObject;
-import br.unicamp.cst.representation.owrl.Property;
-import br.unicamp.cst.representation.owrl.QualityDimension;
-import br.unicamp.cst.util.viewer.representation.idea.IdeaTreeNode;
 
 /**
  *
@@ -31,7 +25,7 @@ public class IdeaDialogFactory extends javax.swing.JDialog {
     
     boolean ok = false;
     String categories[] = {"AbstractObject","Property","Link","QualityDimension","Episode","Composite","Aggregate","Configuration",
-    "TimeStep","Property","Action","Goal"};
+    "TimeStep","Action","Goal"};
 
     /**
      * Creates new form AbstractObjectDialog
