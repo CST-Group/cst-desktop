@@ -236,22 +236,12 @@ public class IdeaPanel extends javax.swing.JPanel {
         }
     }
     
-    private static Idea clone(Idea orig) {
-        Idea newnode;
-        newnode = new Idea(orig.getName(), orig.getValue(), orig.getType());
-        for (Idea i : orig.getL()) {
-            Idea ni = clone(i);
-            newnode.add(ni);
-        }
-        return newnode;
-    }
-    
     private void copyComponent(Object node) {
         if (node == null) return;
         if (node instanceof IdeaTreeNode){
             IdeaTreeNode tnode = (IdeaTreeNode) node;
             Idea tidea = (Idea) tnode.getTreeElement().getElement();
-            Idea copyIdea = clone(tidea);
+            Idea copyIdea = tidea.clone();
             IdeaTreeNode newNode = new IdeaTreeNode(copyIdea);
             //newNode.resetType(tidea);
             newNode.representIdea(tidea);
