@@ -41,9 +41,8 @@ public class IdeaDialogFactory extends javax.swing.JDialog {
     public IdeaDialogFactory(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        for (String s : categories) {
-            jCategory.addItem(s);
-        }        
+        jCategory.setModel(new javax.swing.DefaultComboBoxModel<>(categories));
+        jCategory.setSelectedIndex(1);
     }
 
     /**

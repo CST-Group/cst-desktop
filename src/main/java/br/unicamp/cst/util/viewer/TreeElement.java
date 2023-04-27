@@ -180,6 +180,7 @@ public class TreeElement {
                case 15: return(ICON_ACTIONPOSSIBILITY);
                case 16: return(ICON_ACTIONEXISTENCE);
                case 17: return(ICON_ACTIONCATEGORY);
+               case 18: return(ICON_GOAL);
                default: return(ICON_OBJECT3);
            }
     }
