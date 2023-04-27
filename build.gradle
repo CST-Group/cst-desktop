@@ -35,7 +35,7 @@ configurations {
 
 dependencies {
     //api('com.github.CST-Group:cst:8c66269')
-    api('com.github.CST-Group:cst-bindings:5cdf475')
+    api('com.github.CST-Group:cst-bindings:main-SNAPSHOT')
     api group: 'org.jfree', name: 'jfreechart', version: '1.0.19'
     api 'com.soartech:jsoar-core:4.1.0'
     api 'com.soartech:jsoar-debugger:4.1.0'

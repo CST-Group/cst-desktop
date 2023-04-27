@@ -62,6 +62,7 @@ public class TreeElement {
     public static final int ICON_ACTIONPOSSIBILITY = 28;
     public static final int ICON_ACTIONEXISTENCE = 29;
     public static final int ICON_ACTIONCATEGORY = 30;
+    public static final int ICON_GOAL = 31;
     
 
    
