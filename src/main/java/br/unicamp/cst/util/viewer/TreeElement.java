@@ -12,6 +12,7 @@
 package br.unicamp.cst.util.viewer;
 
 import java.awt.Color;
+import javax.swing.ImageIcon;
 
 /**
  * @author Suelen Mapa
@@ -84,6 +85,40 @@ public class TreeElement {
         {ICON_ACTIONEXISTENCE, 0},     // 16 Action - Existence
         {ICON_ACTIONCATEGORY,0},       // 17 Action - Category
         {ICON_GOAL,0},                 // 18 Goal
+    };
+    
+    public static Object[][] icon_table = {
+        {ICON_COMPOSITE, "object.png"},
+        {ICON_AGGREGATE, "object2.gif"},
+        {ICON_PROPERTY, "property.png"},
+        {ICON_QUALITYDIM, "qualityDim.png"},
+        {ICON_VALUE, "value.png"},
+        {ICON_MIND, "mind.png"},
+        {ICON_CODELET, "codelet.png"},
+        {ICON_CODELETS, "codelets.png"},
+        {ICON_MEMORY, "memory.png"},
+        {ICON_MEMORIES, "memories.png"},
+        {ICON_CONTAINER, "container.png"},
+        {ICON_MO, "mo.png"},
+        {ICON_INPUT, "input.png"},
+        {ICON_OUTPUT, "output.png"},
+        {ICON_BROADCAST, "broadcast.png"},
+        {ICON_AFFORDANCE, "codelet2.png"},
+        {ICON_OBJECT2, "object2.png"}, 
+        {ICON_OBJECT3, "object3.png"},
+        {ICON_CONFIGURATION, "configuration.png"},
+        {ICON_TIME, "time-machine.png"},
+        {ICON_PROPERTYCATEGORY, "propertyCategory.png"},
+        {ICON_OBJECTCATEGORY, "objectCategory.png"},
+        {ICON_EPISODECATEGORY, "episodeCategory.png"},
+        {ICON_PROPERTYPOSSIBILITY, "property-p.png"},
+        {ICON_OBJECTPOSSIBILITY, "object-p.png"},
+        {ICON_EPISODEPOSSIBILITY, "episode-p.png"},
+        {ICON_OBJECTEXISTENCE, "object-e.png"},
+        {ICON_ACTIONPOSSIBILITY, "action-p.png"},
+        {ICON_ACTIONEXISTENCE, "action-e.png"},
+        {ICON_ACTIONCATEGORY, "action-l.png"},
+        {ICON_GOAL, "goal.png"}
     };
    
     public TreeElement(String name, int node_type, Object element, int typeIcon) {

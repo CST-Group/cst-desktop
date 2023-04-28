@@ -51,101 +51,10 @@ public class MindRenderer extends DefaultTreeCellRenderer {
         DefaultMutableTreeNode dmtn = (DefaultMutableTreeNode) value;
         DefaultMutableTreeNode objectNode;
         TreeElement node = (TreeElement) dmtn.getUserObject();
-        switch (node.getIcon()) {
-            case TreeElement.ICON_COMPOSITE:
-                img = new ImageIcon(this.getClass().getClassLoader().getResource("object.png"));
-                break;
-            case TreeElement.ICON_AGGREGATE:
-                img = new ImageIcon(this.getClass().getClassLoader().getResource("object2.gif"));
-                break;    
-            case TreeElement.ICON_PROPERTY:
-                img = new ImageIcon(this.getClass().getClassLoader().getResource("property.png"));
-                break;
-            case TreeElement.ICON_QUALITYDIM:
-                img = new ImageIcon(this.getClass().getClassLoader().getResource("qualityDim.png"));
-                break;
-            case TreeElement.ICON_VALUE:
-                img = new ImageIcon(this.getClass().getClassLoader().getResource("value.png"));
-                break;
-            default:
-            case TreeElement.ICON_MIND:
-                img = new ImageIcon(this.getClass().getClassLoader().getResource("mind.png"));
-                break;
-            case TreeElement.ICON_CODELET:
-                img = new ImageIcon(this.getClass().getClassLoader().getResource("codelet.png"));
-                break;
-            case TreeElement.ICON_CODELETS:
-                img = new ImageIcon(this.getClass().getClassLoader().getResource("codelets.png"));
-                break;
-            case TreeElement.ICON_MEMORY:
-                img = new ImageIcon(this.getClass().getClassLoader().getResource("memory.png"));
-                break;
-            case TreeElement.ICON_MEMORIES:
-                img = new ImageIcon(this.getClass().getClassLoader().getResource("memories.png"));
-                break;
-            case TreeElement.ICON_CONTAINER:
-                img = new ImageIcon(this.getClass().getClassLoader().getResource("container.png"));
-                break;
-            case TreeElement.ICON_MO:
-                img = new ImageIcon(this.getClass().getClassLoader().getResource("mo.png"));
-                break;
-            case TreeElement.ICON_INPUT:
-                img = new ImageIcon(this.getClass().getClassLoader().getResource("input.png"));
-                break;
-            case TreeElement.ICON_OUTPUT:
-                img = new ImageIcon(this.getClass().getClassLoader().getResource("output.png"));
-                break;
-            case TreeElement.ICON_BROADCAST:    
-                img = new ImageIcon(this.getClass().getClassLoader().getResource("broadcast.png"));
-                break;
-            case TreeElement.ICON_AFFORDANCE:    
-                img = new ImageIcon(this.getClass().getClassLoader().getResource("codelet2.png"));
-                break;
-            case TreeElement.ICON_OBJECT2:
-                img = new ImageIcon(this.getClass().getClassLoader().getResource("object2.png"));
-                break;     
-            case TreeElement.ICON_OBJECT3:    
-                img = new ImageIcon(this.getClass().getClassLoader().getResource("object3.png"));
-                break;  
-            case TreeElement.ICON_CONFIGURATION:    
-                img = new ImageIcon(this.getClass().getClassLoader().getResource("configuration.png"));
-                break;     
-            case TreeElement.ICON_TIME:    
-                img = new ImageIcon(this.getClass().getClassLoader().getResource("time-machine.png"));
-                break;         
-            case TreeElement.ICON_PROPERTYCATEGORY:    
-                img = new ImageIcon(this.getClass().getClassLoader().getResource("propertyCategory.png"));
-                break;
-            case TreeElement.ICON_OBJECTCATEGORY:    
-                img = new ImageIcon(this.getClass().getClassLoader().getResource("objectCategory.png"));
-                break;
-            case TreeElement.ICON_EPISODECATEGORY:    
-                img = new ImageIcon(this.getClass().getClassLoader().getResource("episodeCategory.png"));
-                break;
-            case TreeElement.ICON_PROPERTYPOSSIBILITY:    
-                img = new ImageIcon(this.getClass().getClassLoader().getResource("property-p.png"));
-                break;
-            case TreeElement.ICON_OBJECTPOSSIBILITY:    
-                img = new ImageIcon(this.getClass().getClassLoader().getResource("object-p.png"));
-                break;
-            case TreeElement.ICON_EPISODEPOSSIBILITY:    
-                img = new ImageIcon(this.getClass().getClassLoader().getResource("episode-p.png"));
-                break;    
-            case TreeElement.ICON_OBJECTEXISTENCE:    
-                img = new ImageIcon(this.getClass().getClassLoader().getResource("object-e.png"));
-                break;
-            case TreeElement.ICON_ACTIONPOSSIBILITY:    
-                img = new ImageIcon(this.getClass().getClassLoader().getResource("action-p.png"));
-                break;
-            case TreeElement.ICON_ACTIONEXISTENCE:    
-                img = new ImageIcon(this.getClass().getClassLoader().getResource("action-e.png"));
-                break;    
-            case TreeElement.ICON_ACTIONCATEGORY:    
-                img = new ImageIcon(this.getClass().getClassLoader().getResource("action-l.png"));
-                break;
-            case TreeElement.ICON_GOAL:    
-                img = new ImageIcon(this.getClass().getClassLoader().getResource("goal.png"));
-                break;    
+        img = new ImageIcon(this.getClass().getClassLoader().getResource("mind.png")); // This is the default img if not found anyone else
+        for (int i=0;i<TreeElement.icon_table.length;i++) {
+            if (node.getIcon() == (int)TreeElement.icon_table[i][0])
+                img = new ImageIcon(this.getClass().getClassLoader().getResource((String)TreeElement.icon_table[i][1]));
         }
         setOpenIcon(img);
         setClosedIcon(img);

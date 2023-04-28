@@ -67,6 +67,25 @@ public class IdeaTreeNodeComparator implements Comparator {
             else if(!te1.getName().startsWith("operator") && te2.getName().startsWith("operator")) return(-1); 
             else if (te1.getIcon() == TreeElement.ICON_GOAL && te2.getIcon() != TreeElement.ICON_GOAL) return(-1);
             else if (te1.getIcon() != TreeElement.ICON_GOAL && te2.getIcon() == TreeElement.ICON_GOAL) return(1);
+            else if (te1.getIcon() == TreeElement.ICON_EPISODEPOSSIBILITY && te2.getIcon() != TreeElement.ICON_EPISODEPOSSIBILITY) return(-1);
+            else if (te1.getIcon() != TreeElement.ICON_EPISODEPOSSIBILITY && te2.getIcon() == TreeElement.ICON_EPISODEPOSSIBILITY) return(1);
+            else if (te1.getIcon() == TreeElement.ICON_AFFORDANCE && te2.getIcon() != TreeElement.ICON_AFFORDANCE) return(-1);
+            else if (te1.getIcon() != TreeElement.ICON_AFFORDANCE && te2.getIcon() == TreeElement.ICON_AFFORDANCE) return(1);
+            else if (te1.getIcon() == TreeElement.ICON_EPISODECATEGORY && te2.getIcon() != TreeElement.ICON_EPISODECATEGORY) return(-1);
+            else if (te1.getIcon() != TreeElement.ICON_EPISODECATEGORY && te2.getIcon() == TreeElement.ICON_EPISODECATEGORY) return(1);
+            else if (te1.getIcon() == TreeElement.ICON_OBJECTPOSSIBILITY && te2.getIcon() != TreeElement.ICON_OBJECTPOSSIBILITY) return(-1);
+            else if (te1.getIcon() != TreeElement.ICON_OBJECTPOSSIBILITY && te2.getIcon() == TreeElement.ICON_OBJECTPOSSIBILITY) return(1);
+            else if (te1.getIcon() == TreeElement.ICON_OBJECTEXISTENCE && te2.getIcon() != TreeElement.ICON_OBJECTEXISTENCE) return(-1);
+            else if (te1.getIcon() != TreeElement.ICON_OBJECTEXISTENCE && te2.getIcon() == TreeElement.ICON_OBJECTEXISTENCE) return(1);
+            else if (te1.getIcon() == TreeElement.ICON_OBJECTCATEGORY && te2.getIcon() != TreeElement.ICON_OBJECTCATEGORY) return(-1);
+            else if (te1.getIcon() != TreeElement.ICON_OBJECTCATEGORY && te2.getIcon() == TreeElement.ICON_OBJECTCATEGORY) return(1);
+            else if (te1.getIcon() == TreeElement.ICON_PROPERTYPOSSIBILITY && te2.getIcon() != TreeElement.ICON_PROPERTYPOSSIBILITY) return(-1);
+            else if (te1.getIcon() != TreeElement.ICON_PROPERTYPOSSIBILITY && te2.getIcon() == TreeElement.ICON_PROPERTYPOSSIBILITY) return(1);
+            else if (te1.getIcon() == TreeElement.ICON_PROPERTY && te2.getIcon() != TreeElement.ICON_PROPERTY) return(-1);
+            else if (te1.getIcon() != TreeElement.ICON_PROPERTY && te2.getIcon() == TreeElement.ICON_PROPERTY) return(1);
+            else if (te1.getIcon() == TreeElement.ICON_PROPERTYCATEGORY && te2.getIcon() != TreeElement.ICON_PROPERTYCATEGORY) return(-1);
+            else if (te1.getIcon() != TreeElement.ICON_PROPERTYCATEGORY && te2.getIcon() == TreeElement.ICON_PROPERTYCATEGORY) return(1);
+            
             else if (te1.getIcon() == te2.getIcon() || 
                     te1.getIcon() == TreeElement.ICON_OBJECT && te2.getIcon() == TreeElement.ICON_OBJECT2 ||
                     te1.getIcon() == TreeElement.ICON_OBJECT2 && te2.getIcon() == TreeElement.ICON_OBJECT) {
