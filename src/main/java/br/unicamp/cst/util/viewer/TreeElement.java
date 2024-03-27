@@ -239,6 +239,17 @@ public class TreeElement {
                default: return(ICON_OBJECT3);
            }
     }
+
+    public static int getIdeaTypeFromIcon(int icon){
+        int p = 0;
+        for (int i=0; i<table.length; i++){
+            if (table[i][0].equals(icon)) {
+                break;
+            }
+            p++;
+        }
+        return p ;
+    }
     
     
 }

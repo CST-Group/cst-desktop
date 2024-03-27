@@ -68,20 +68,20 @@ public class IdeaTreeNode extends DefaultMutableTreeNode {
     
     public IdeaTreeNode genIdNode(Idea ido) {
         String value = "";
-        if (!ido.getValue().toString().equals("")) value = " [" + ido.getValue().toString()+"]"; 
+        if (!String.valueOf(ido.getValue()).equals("")) value = " [" + String.valueOf(ido.getValue())+"]";
         IdeaTreeNode idNode = new IdeaTreeNode(ido.getName()+value, TreeElement.NODE_NORMAL, ido, TreeElement.ICON_OBJECT3); 
         return(idNode);
     }
     
     public IdeaTreeNode genFinalIdNode(Idea ido) {
         String value = "";
-        if (!ido.getValue().toString().equals("")) value = " [<font color=red>" + ido.getValue().toString()+"</font>]";
+        if (!String.valueOf(ido.getValue()).equals("")) value = " [<font color=red>" + String.valueOf(ido.getValue())+"</font>]";
         IdeaTreeNode idNode = new IdeaTreeNode(ido.getName()+value, TreeElement.NODE_NORMAL, ido, TreeElement.ICON_OBJECT2); 
         return(idNode);
     }
     
     public IdeaTreeNode genValNode(Idea node) {
-        IdeaTreeNode valueNode = new IdeaTreeNode(node.getName()+": "+node.getValue().toString(), TreeElement.NODE_NORMAL, node, TreeElement.ICON_PROPERTY);
+        IdeaTreeNode valueNode = new IdeaTreeNode(node.getName()+": "+String.valueOf(node.getValue()), TreeElement.NODE_NORMAL, node, TreeElement.ICON_PROPERTY);
         return(valueNode);
     }
     
@@ -177,8 +177,8 @@ public class IdeaTreeNode extends DefaultMutableTreeNode {
     }
     
     public boolean equals(Idea ido, Idea ii) {
-        String s1 = ido.getName()+ido.getValue().toString();
-        String s2 = ii.getName()+ii.getValue().toString();
+        String s1 = ido.getName()+String.valueOf(ido.getValue());
+        String s2 = ii.getName()+String.valueOf(ii.getValue());
         return(s1.toString().equalsIgnoreCase(s2.toString()));
     }
     
@@ -193,7 +193,11 @@ public class IdeaTreeNode extends DefaultMutableTreeNode {
             Collections.sort(this.children,comparator);
         }
     }
-    
+
+    public void addWithoutSorting(MutableTreeNode newChild){
+        super.add(newChild);
+    }
+
     @Override
     public void add(MutableTreeNode newChild)
     {
