@@ -98,6 +98,7 @@ public class IdeaTreeTransferHandler extends TransferHandler {
                 destNode.addWithoutSorting(newTreeNode);
             Idea destIdea = (Idea) destNode.getTreeElement().getElement();
             destIdea.add(newIdea);
+            ExpandStateLibrary.set(newTreeNode, true);
             ExpandStateLibrary.set(destNode, true);
 
             if (support.getDropAction() == MOVE){
