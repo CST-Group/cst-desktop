@@ -17,11 +17,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.jsoar.kernel.memory.Wme;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -139,6 +135,30 @@ public class IdeaPanel extends javax.swing.JPanel {
                 }
             }};
         if (editable) jtree.addMouseListener(ml);
+
+        KeyAdapter ka = new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                TreePath[] paths = jtree.getSelectionPaths();
+                if (paths != null) {
+                    IdeaTreeNode tn = (IdeaTreeNode) paths[0].getLastPathComponent();
+                    if (e.getKeyCode() == KeyEvent.VK_C && e.isControlDown()){
+                        copyComponent(tn);
+                    }
+                    if (e.getKeyCode() == KeyEvent.VK_V && e.isControlDown()){
+                        pasteComponent(tn);
+                    }
+                    if (e.getKeyCode() == KeyEvent.VK_X && e.isControlDown()){
+                        copyComponent(tn);
+                        deleteComponent(tn);
+                    }
+                    if (e.getKeyCode() == KeyEvent.VK_DELETE){
+                        deleteComponent(tn);
+                    }
+                }
+            }
+        };
+        if (editable) jtree.addKeyListener(ka);
     }
     
     public IdeaTreeNode getRootTreeNode() {
