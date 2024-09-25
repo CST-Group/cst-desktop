@@ -18,7 +18,7 @@ import br.unicamp.cst.core.entities.Mind;
 import br.unicamp.cst.support.CodeletsProfiler;
 import br.unicamp.cst.support.CodeletsProfiler.CodeletTrack;
 import br.unicamp.cst.support.InterfaceAdapter;
-import br.unicamp.cst.util.TestCodelet;
+import br.unicamp.cst.support.TestCodelet;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;

@@ -16,7 +16,7 @@ import java.awt.AWTException;
 import java.awt.Robot;
 import java.util.Random;
 
-import br.unicamp.cst.util.TestComplexMemoryObjectInfo;
+import br.unicamp.cst.support.TestComplexMemoryObjectInfo;
 import org.junit.Test;
 
 /**

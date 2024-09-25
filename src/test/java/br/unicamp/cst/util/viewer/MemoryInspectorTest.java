@@ -17,7 +17,7 @@ import java.awt.Robot;
 import java.awt.event.InputEvent;
 import static org.junit.Assert.assertEquals;
 
-import br.unicamp.cst.util.TestComplexMemoryObjectInfo;
+import br.unicamp.cst.support.TestComplexMemoryObjectInfo;
 import org.junit.Test;
 
 /**

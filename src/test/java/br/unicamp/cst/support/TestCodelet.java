@@ -8,7 +8,7 @@
  * Contributors:
  * K. Raizer, A. L. O. Paraense, E. M. Froes, R. R. Gudwin - initial API and implementation
  ***********************************************************************************************/
-package br.unicamp.cst.util;
+package br.unicamp.cst.support;
 
 import br.unicamp.cst.core.entities.Codelet;
 
