@@ -89,7 +89,7 @@ public class IdeaTreeNode extends DefaultMutableTreeNode {
         Idea category = node.get("category");
         if (category != null && category.getValue() instanceof String) {
             String category_type = (String) category.getValue();
-            node.setType(Idea.guessType(category_type,node.getScope()));
+            node.setType(Idea.guessType(category_type,node.getValue(), node.getBelief(), node.getThreshold()));
         } 
     }
     
