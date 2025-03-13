@@ -58,9 +58,11 @@ public class IdeaDialogFactory extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jScope = new javax.swing.JComboBox<>();
         jTypeEnable = new javax.swing.JCheckBox();
         jCategory = new javax.swing.JComboBox<>();
+        jThreshold = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jBelief = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -104,15 +106,7 @@ public class IdeaDialogFactory extends javax.swing.JDialog {
 
         jLabel4.setText("Category:");
 
-        jLabel5.setText("Scope:");
-
-        jScope.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Possibility", "Existence", "Law" }));
-        jScope.setSelectedIndex(1);
-        jScope.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jScopeActionPerformed(evt);
-            }
-        });
+        jLabel5.setText("Belief:");
 
         jTypeEnable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,6 +115,14 @@ public class IdeaDialogFactory extends javax.swing.JDialog {
         });
 
         jCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jThreshold.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jThresholdActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Threshold:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -138,9 +140,11 @@ public class IdeaDialogFactory extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jThreshold)
                     .addComponent(jType)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jOK)
@@ -148,8 +152,8 @@ public class IdeaDialogFactory extends javax.swing.JDialog {
                         .addComponent(jCancel))
                     .addComponent(jName)
                     .addComponent(jValue)
-                    .addComponent(jScope, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBelief))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTypeEnable)
                 .addGap(15, 15, 15))
@@ -178,7 +182,11 @@ public class IdeaDialogFactory extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jScope, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jBelief, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jThreshold, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jOK)
@@ -213,14 +221,24 @@ public class IdeaDialogFactory extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTypeActionPerformed
 
-    private void jScopeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jScopeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jScopeActionPerformed
-
     private void jTypeEnableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTypeEnableActionPerformed
         jType.setEditable(jTypeEnable.isSelected());
         jType.setEnabled(jTypeEnable.isSelected());
     }//GEN-LAST:event_jTypeEnableActionPerformed
+
+    private void jThresholdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jThresholdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jThresholdActionPerformed
+    
+    private static Double tryParseDouble(String value) {
+        Double returnValue = 0.0;
+        try {
+            returnValue = Double.parseDouble(value);
+        } catch (Exception ex) {
+            returnValue = 0.0;
+        }
+        return returnValue;
+    }
     
     public static IdeaTreeNode getIdea(IdeaTreeNode baseNode) {
 
@@ -241,17 +259,17 @@ public class IdeaDialogFactory extends javax.swing.JDialog {
         String newname = dialog.jName.getText();
         String newvalue = dialog.jValue.getText();
         String newcategory = (String) dialog.jCategory.getSelectedItem();
-        int newscope;
-        newscope = dialog.jScope.getSelectedIndex();
+        double newbelief = tryParseDouble(dialog.jBelief.getText());
+        double newthreshold = tryParseDouble(dialog.jThreshold.getText());
         Idea newwmnode;
         if (!dialog.jType.isEditable()) {
-            newwmnode = new Idea(newname,newvalue,newcategory,newscope);
+            newwmnode = new Idea(newname,newvalue,Idea.guessType(newcategory,newvalue,newbelief,newthreshold),newcategory,newbelief,newthreshold);
         }
         else {
             int newtype;
             try {newtype = Integer.parseInt(dialog.jType.getText());
             } catch (Exception e) {newtype = 0;}
-            newwmnode = new Idea(newname,newvalue,newtype,newcategory,newscope);
+            newwmnode = new Idea(newname,newvalue,newtype,newcategory,newbelief,newthreshold);
         }
         IdeaTreeNode newnode = baseNode.addIdeaNode(newwmnode);
         newnode.representIdea(newwmnode);
@@ -276,7 +294,8 @@ public class IdeaDialogFactory extends javax.swing.JDialog {
         dialog.jValue.setText(String.valueOf(idea.getValue()));
         dialog.jType.setText(String.valueOf(idea.getType()));
         dialog.jCategory.setSelectedItem(idea.getCategory());
-        dialog.jScope.setSelectedIndex(idea.getScope());
+        dialog.jBelief.setText(String.valueOf(idea.getBelief()));
+        dialog.jThreshold.setText(String.valueOf(idea.getThreshold()));
         //RefineryUtilities.centerFrameOnScreen(dialog);
         dialog.setVisible(true);
         dialog.dispose();
@@ -285,14 +304,15 @@ public class IdeaDialogFactory extends javax.swing.JDialog {
            id.setName(dialog.jName.getText());
            id.setValue(dialog.jValue.getText());
            id.setCategory((String)dialog.jCategory.getSelectedItem());
-           id.setScope(dialog.jScope.getSelectedIndex());
+           id.setBelief(tryParseDouble(dialog.jBelief.getText()));
+           id.setThreshold(tryParseDouble(dialog.jThreshold.getText()));        
            int type;
            if (dialog.jType.isEditable()) {
                try {type = Integer.parseInt(dialog.jType.getText());
-               } catch (Exception e) {type = id.guessType(id.getCategory(),id.getScope());}
+               } catch (Exception e) {type = id.guessType(id.getCategory(),id.getValue(),id.getBelief(),id.getThreshold());}
            }
            else 
-               type = id.guessType(id.getCategory(),id.getScope());
+               type = id.guessType(id.getCategory(),id.getValue(),id.getBelief(),id.getThreshold());
            id.setType(type);
            node.representIdea(id);
            return(dialog.jName.getText());
@@ -301,6 +321,7 @@ public class IdeaDialogFactory extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField jBelief;
     private javax.swing.JButton jCancel;
     private javax.swing.JComboBox<String> jCategory;
     private javax.swing.JLabel jLabel1;
@@ -308,9 +329,10 @@ public class IdeaDialogFactory extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField jName;
     private javax.swing.JButton jOK;
-    private javax.swing.JComboBox<String> jScope;
+    private javax.swing.JTextField jThreshold;
     private javax.swing.JTextField jType;
     private javax.swing.JCheckBox jTypeEnable;
     private javax.swing.JTextField jValue;
