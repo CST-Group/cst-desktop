@@ -119,6 +119,27 @@ public class MindViewer extends javax.swing.JFrame {
         Logger.getLogger("javax.swing").setLevel(Level.OFF);
     }
     
+    /**
+     * Creates new form WorldObjectViewer
+     * 
+     * @param mind A Mind object
+     * @param windowName Name to be used by MindViewer
+     * @param behavioralCodelets A list of behavioral codelets
+     * @param jSoarCodelet A jSoarCodelet
+     */
+    public MindViewer(Mind mind, String windowName, List<Codelet> behavioralCodelets, JSoarCodelet jSoarCodelet) {
+        this(mind, windowName,behavioralCodelets);
+        plansSubsystemModule.setjSoarCodelet(jSoarCodelet);
+        buildPlanModulePanel();
+    }
+    
+    private void buildPlanModulePanel(){
+        if(plansSubsystemModule.verifyExistCodelets()){
+            plansSubsystemViewer = new PlansSubsystemViewer(Long.parseLong(txtRefreshTime.getText()), this);
+            tbControl.add("Plans Subsystem", plansSubsystemViewer);
+        }
+    }
+    
     
     private void buildMindModulePanels(Mind mind){
         if(mind.getCodeletGroupsNumber() > 0) {
@@ -129,11 +150,6 @@ public class MindViewer extends javax.swing.JFrame {
                 }
             }    
         }    
-
-        if(plansSubsystemModule.verifyExistCodelets()){
-            plansSubsystemViewer = new PlansSubsystemViewer(Long.parseLong(txtRefreshTime.getText()), this);
-            tbControl.add("Plans Subsystem", plansSubsystemViewer);
-        }
     }
 
     /**
