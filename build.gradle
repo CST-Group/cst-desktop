@@ -23,6 +23,9 @@ repositories {
     maven {
         url "https://artifacts.camunda.com/artifactory/public/"
     }
+    maven {
+        url "https://repo.spring.io/plugins-release/"
+    }
     maven { url 'https://jitpack.io' }
 }
 
