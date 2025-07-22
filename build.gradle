@@ -40,7 +40,7 @@ configurations.all {
                     details.useTarget "commons-io:commons-io:2.20.0"
                     details.because 'Substituindo dependência antiga da SpringSource'
                 }
-                if (details.requested.name == 'com.springsource.org.apache.commons.lang3') {
+                if (details.requested.name == 'com.springsource.org.apache.commons.lang') {
                     details.useTarget "org.apache.commons:commons-lang3:3.18.0"
                     details.because 'Substituindo dependência antiga da SpringSource por lang3'
                 }
