@@ -17,7 +17,7 @@ import java.awt.Robot;
 import java.util.Random;
 
 import br.unicamp.cst.support.TestComplexMemoryObjectInfo;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  *

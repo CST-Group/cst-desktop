@@ -14,7 +14,7 @@ import javax.swing.JFrame;
 
 import br.unicamp.cst.representation.idea.Idea;
 import br.unicamp.cst.util.viewer.representation.idea.IdeaPanel;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class TestIdeaPanel {
     

@@ -12,7 +12,7 @@ package br.unicamp.cst.util.bindings.soar;
 
 import br.unicamp.cst.bindings.soar.JSoarCodelet;
 import br.unicamp.cst.util.viewer.bindings.soar.WorkingMemoryViewer;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 

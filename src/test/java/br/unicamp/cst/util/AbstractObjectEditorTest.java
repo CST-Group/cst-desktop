@@ -14,7 +14,7 @@ import br.unicamp.cst.util.viewer.representation.owrl.AbstractObjectEditor;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import br.unicamp.cst.representation.owrl.AbstractObject;
 import br.unicamp.cst.representation.owrl.Affordance;

@@ -18,7 +18,7 @@ import java.awt.event.InputEvent;
 import static org.junit.Assert.assertEquals;
 
 import br.unicamp.cst.support.TestComplexMemoryObjectInfo;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  *

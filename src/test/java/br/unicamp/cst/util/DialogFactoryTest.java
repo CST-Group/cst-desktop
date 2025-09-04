@@ -11,7 +11,7 @@
 package br.unicamp.cst.util;
 
 import br.unicamp.cst.util.viewer.DialogFactory;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author gudwin

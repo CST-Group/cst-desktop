@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import br.unicamp.cst.util.viewer.MindViewer;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import br.unicamp.cst.core.entities.Codelet;
 import br.unicamp.cst.core.entities.MemoryContainer;

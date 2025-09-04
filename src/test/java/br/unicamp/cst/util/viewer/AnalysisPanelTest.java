@@ -28,8 +28,7 @@ import java.io.FileReader;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import javax.swing.JFrame;
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
 /**
  *
  * @author rgudwin

@@ -14,7 +14,7 @@ import br.unicamp.cst.bindings.soar.JSoarCodelet;
 import br.unicamp.cst.util.viewer.bindings.soar.SOARInspector;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
