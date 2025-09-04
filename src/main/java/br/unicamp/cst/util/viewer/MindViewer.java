@@ -119,7 +119,6 @@ public class MindViewer extends javax.swing.JFrame {
         Logger.getLogger("javax.swing").setLevel(Level.OFF);
     }
     
-    
     private void buildMindModulePanels(Mind mind){
         if(mind.getCodeletGroupsNumber() > 0) {
             if (mind.getCodeletGroupList("Motivational") != null) {
@@ -127,13 +126,20 @@ public class MindViewer extends javax.swing.JFrame {
                     motivationalModuleViewer = new MotivationalSubsystemViewer(Long.parseLong(txtRefreshTime.getText()), mind);
                     tbModules.add("Motivational Subsystem", motivationalModuleViewer);
                 }
-            }    
+            }
+            if (mind.getCodeletGroupList("Planning") != null) {
+                if (mind.getCodeletGroupList("Planning").size() > 0) {
+                    JSoarCodelet jSoarCodelet = (JSoarCodelet) mind.getCodeletGroupList("Planning").get(0);
+                    plansSubsystemModule.setjSoarCodelet(jSoarCodelet);
+                    if(plansSubsystemModule.verifyExistCodelets()){
+                        plansSubsystemViewer = new PlansSubsystemViewer(Long.parseLong(txtRefreshTime.getText()), this);
+                        tbControl.add("Plans Subsystem", plansSubsystemViewer);
+                    }
+                }
+            }
         }    
 
-        if(plansSubsystemModule.verifyExistCodelets()){
-            plansSubsystemViewer = new PlansSubsystemViewer(Long.parseLong(txtRefreshTime.getText()), this);
-            tbControl.add("Plans Subsystem", plansSubsystemViewer);
-        }
+        
     }
 
     /**
