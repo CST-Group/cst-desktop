@@ -8,8 +8,20 @@ group = 'com.github.CST-Group'
 
 description = "CST-Desktop"
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+java {
+   //sourceCompatibility = JavaVersion.VERSION_11
+   //targetCompatibility = JavaVersion.VERSION_11
+   //sourceCompatibility = JavaVersion.VERSION_1_8
+   //targetCompatibility = JavaVersion.VERSION_1_8
+
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
 version = '1.1.0'
 
 repositories {
@@ -24,6 +36,9 @@ repositories {
         url "https://artifacts.camunda.com/artifactory/public/"
     }
     maven { url 'https://jitpack.io' }
+    maven {
+        url = 'https://cst-group.github.io/cst-dependencies/maven-repo/'
+    }
 }
 
 configurations {
@@ -96,4 +111,12 @@ jacocoTestReport {
     reports {
         xml.required = true
     }
+}
+
+uberJar {
+    dependsOn jar
+}
+
+test {
+    useJUnitPlatform()
 }
