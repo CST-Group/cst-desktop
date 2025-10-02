@@ -97,7 +97,7 @@ public class MemoryViewer extends javax.swing.JFrame {
             else {// this is what to show when the memory is null
                 mValues.setModel(nTableModel);
             }
-            long times = ((MemoryObject) m).getTimestamp();
+            long times = ((Memory) m).getTimestamp();
             String ts = TimeStamp.getStringTimeStamp(times,"dd/MM/yyyy HH:mm:ss.SSS");
             timeStamp.setText(ts);
             Eval.setText(String.format("%4.2f",m.getEvaluation()));
