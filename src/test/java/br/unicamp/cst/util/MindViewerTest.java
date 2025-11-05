@@ -13,8 +13,6 @@ package br.unicamp.cst.util;
 import java.util.ArrayList;
 
 import br.unicamp.cst.util.viewer.MindViewer;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.jupiter.api.Test;
 
 import br.unicamp.cst.core.entities.Codelet;
@@ -22,6 +20,8 @@ import br.unicamp.cst.core.entities.MemoryContainer;
 import br.unicamp.cst.core.entities.MemoryObject;
 import br.unicamp.cst.core.entities.Mind;
 import br.unicamp.cst.support.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 
 /**
  * @author gudwin
@@ -29,11 +29,11 @@ import br.unicamp.cst.support.*;
  */
 public class MindViewerTest {
 	
-	@BeforeClass
+	@BeforeAll
     public static void beforeAllTestMethods() {
     }
 
-	@AfterClass
+	@AfterAll
     public static void afterAllTestMethods() {
     }
     

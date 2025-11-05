@@ -12,11 +12,11 @@ package br.unicamp.cst.util.bindings.soar;
 
 import br.unicamp.cst.bindings.soar.JSoarCodelet;
 import br.unicamp.cst.util.viewer.bindings.soar.SOARInspector;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 
 /**
  * @author gudwin
@@ -41,11 +41,11 @@ public class SOARInspectorTest {
         }
     };
 
-	@BeforeClass
+	@BeforeAll
     public static void beforeAllTestMethods() {
     }
 
-	@AfterClass
+	@AfterAll
     public static void afterAllTestMethods() {
     }
     

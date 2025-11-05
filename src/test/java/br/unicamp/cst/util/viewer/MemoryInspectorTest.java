@@ -15,9 +15,9 @@ import br.unicamp.cst.core.entities.MemoryObject;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
-import static org.junit.Assert.assertEquals;
 
 import br.unicamp.cst.support.TestComplexMemoryObjectInfo;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 /**
