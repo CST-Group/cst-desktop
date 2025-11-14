@@ -130,9 +130,15 @@ public class MindViewer extends javax.swing.JFrame {
             }    
         }    
 
-        if(plansSubsystemModule.verifyExistCodelets()){
-            plansSubsystemViewer = new PlansSubsystemViewer(Long.parseLong(txtRefreshTime.getText()), this);
-            tbControl.add("Plans Subsystem", plansSubsystemViewer);
+        if (mind.getCodeletGroupList("Planning") != null) {
+            if (mind.getCodeletGroupList("Planning").size() > 0) {
+                JSoarCodelet jSoarCodelet = (JSoarCodelet) mind.getCodeletGroupList("Planning").get(0);
+                plansSubsystemModule.setjSoarCodelet(jSoarCodelet);
+                if(plansSubsystemModule.verifyExistCodelets()){
+                    plansSubsystemViewer = new PlansSubsystemViewer(Long.parseLong(txtRefreshTime.getText()), this);
+                    tbControl.add("Plans Subsystem", plansSubsystemViewer);
+                }
+            }
         }
     }
 
