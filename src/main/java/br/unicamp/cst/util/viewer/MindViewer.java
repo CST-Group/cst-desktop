@@ -30,7 +30,12 @@ import org.jfree.data.xy.XYSeriesCollection;
 
 import br.unicamp.cst.util.viewer.bindings.soar.PlansSubsystemViewer;
 import br.unicamp.cst.core.entities.Codelet;
+import br.unicamp.cst.core.entities.Memory;
+import br.unicamp.cst.core.entities.MemoryContainer;
 import br.unicamp.cst.core.entities.Mind;
+import br.unicamp.cst.representation.idea.Habit;
+import br.unicamp.cst.representation.idea.HabitExecutionerCodelet;
+import br.unicamp.cst.representation.idea.Idea;
 import br.unicamp.cst.util.viewer.motivational.MotivationalSubsystemViewer;
 
 /**
@@ -379,7 +384,25 @@ public class MindViewer extends javax.swing.JFrame {
                 XYSeriesCollection dataset = new XYSeriesCollection();
 
                 for (Codelet co : getBehavioralCodelets()) {
-                    dataset.addSeries(new XYSeries(co.getName()));
+                    if (co instanceof HabitExecutionerCodelet) {
+                        for (Memory m : co.getInputs()) {
+                            if (m instanceof MemoryContainer) {
+                                for (Memory mo: ((MemoryContainer)m).getAllMemories()) {
+                                    Object o = mo.getI();
+                                    if (o instanceof Idea) {
+                                        Idea id = (Idea)o;
+                                        Object value = id.getValue();
+                                        if (m.getName().equalsIgnoreCase(co.getName()+"Habits") && value instanceof Habit) {
+                                            String habitName = id.getName();
+                                            dataset.addSeries(new XYSeries(habitName));
+                                        }    
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        dataset.addSeries(new XYSeries(co.getName()));
+                    }
                 }
 
                 synchronized (pnCodelets) {

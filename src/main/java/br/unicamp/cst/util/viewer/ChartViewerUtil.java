@@ -11,6 +11,12 @@
 package br.unicamp.cst.util.viewer;
 
 import br.unicamp.cst.core.entities.Codelet;
+import br.unicamp.cst.core.entities.Memory;
+import br.unicamp.cst.core.entities.MemoryContainer;
+import br.unicamp.cst.representation.idea.Habit;
+import br.unicamp.cst.representation.idea.HabitExecutionerCodelet;
+import br.unicamp.cst.representation.idea.Idea;
+
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -22,6 +28,7 @@ import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
 /**
@@ -80,7 +87,28 @@ public class ChartViewerUtil {
 
         synchronized (tempCodeletsList) {
             for (Codelet co : tempCodeletsList) {
-                dataset.addValue(co.getActivation(), co.getName(), "activation");
+                if (co instanceof HabitExecutionerCodelet) {
+                    HabitExecutionerCodelet hec = (HabitExecutionerCodelet)co;
+                    for (Memory m : hec.getInputs()) {
+                        if (m instanceof MemoryContainer) {
+                            for (Memory mo: ((MemoryContainer)m).getAllMemories()) {
+                                Object o = mo.getI();
+                                if (o instanceof Idea) {
+                                    Idea id = (Idea)o;
+                                    Object value = id.getValue();
+                                    if (m.getName().equalsIgnoreCase(hec.getName()+"Habits") && value instanceof Habit) {
+                                        String habitName = id.getName();
+                                        if (habitName.equalsIgnoreCase(hec.getHabitName())) {
+                                            dataset.addValue(hec.getActivation(), habitName, "activation");
+                                        }
+                                    }    
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    dataset.addValue(co.getActivation(), co.getName(), "activation");
+                }
             }
         }
     }
@@ -91,7 +119,28 @@ public class ChartViewerUtil {
 
         synchronized (tempCodeletsList) {
             for (Codelet co : tempCodeletsList) {
-                dataset.getSeries(co.getName()).add(instant, co.getActivation());
+                if (co instanceof HabitExecutionerCodelet) {
+                    HabitExecutionerCodelet hec = (HabitExecutionerCodelet)co;
+                    for (Memory m : hec.getInputs()) {
+                        if (m instanceof MemoryContainer) {
+                            for (Memory mo: ((MemoryContainer)m).getAllMemories()) {
+                                Object o = mo.getI();
+                                if (o instanceof Idea) {
+                                    Idea id = (Idea)o;
+                                    Object value = id.getValue();
+                                    if (m.getName().equalsIgnoreCase(hec.getName()+"Habits") && value instanceof Habit) {
+                                        String habitName = id.getName();
+                                        if (habitName.equalsIgnoreCase(hec.getHabitName())) {
+                                            dataset.getSeries(habitName).add(instant, co.getActivation());
+                                        }
+                                    }    
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    dataset.getSeries(co.getName()).add(instant, co.getActivation());
+                }
             }
         }
     }
@@ -102,9 +151,29 @@ public class ChartViewerUtil {
 
         synchronized (tempCodeletsList) {
             for (Codelet co : tempCodeletsList) {
-                dataset.addValue(co.getOutput(memoryName).getEvaluation(), co.getName(), "activation");
+                if (co instanceof HabitExecutionerCodelet) {
+                    HabitExecutionerCodelet hec = (HabitExecutionerCodelet)co;
+                    for (Memory m : hec.getInputs()) {
+                        if (m instanceof MemoryContainer) {
+                            for (Memory mo: ((MemoryContainer)m).getAllMemories()) {
+                                Object o = mo.getI();
+                                if (o instanceof Idea) {
+                                    Idea id = (Idea)o;
+                                    Object value = id.getValue();
+                                    if (m.getName().equalsIgnoreCase(hec.getName()+"Habits") && value instanceof Habit) {
+                                        String habitName = id.getName();
+                                        if (habitName.equalsIgnoreCase(hec.getHabitName())) {
+                                            dataset.addValue(co.getOutput(memoryName).getEvaluation(), habitName, "activation");
+                                        }
+                                    }    
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    dataset.addValue(co.getOutput(memoryName).getEvaluation(), co.getName(), "activation");
+                }
             }
         }
     }
-
 }
