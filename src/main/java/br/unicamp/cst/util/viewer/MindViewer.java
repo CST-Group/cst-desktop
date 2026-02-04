@@ -11,6 +11,7 @@
 package br.unicamp.cst.util.viewer;
 
 import br.unicamp.cst.bindings.soar.JSoarCodelet;
+import br.unicamp.cst.bindings.soar.PlanSelectionCodelet;
 import br.unicamp.cst.bindings.soar.PlansSubsystemModule;
 import br.unicamp.cst.util.Refresher;
 
@@ -32,6 +33,7 @@ import br.unicamp.cst.util.viewer.bindings.soar.PlansSubsystemViewer;
 import br.unicamp.cst.core.entities.Codelet;
 import br.unicamp.cst.core.entities.Mind;
 import br.unicamp.cst.util.viewer.motivational.MotivationalSubsystemViewer;
+import java.util.ArrayList;
 
 /**
  *
@@ -130,9 +132,32 @@ public class MindViewer extends javax.swing.JFrame {
             }    
         }    
 
-        if(plansSubsystemModule.verifyExistCodelets()){
-            plansSubsystemViewer = new PlansSubsystemViewer(Long.parseLong(txtRefreshTime.getText()), this);
-            tbControl.add("Plans Subsystem", plansSubsystemViewer);
+        if (mind.getCodeletGroupList("Planning") != null) {
+            if (mind.getCodeletGroupList("Planning").size() > 0) {
+                ArrayList<Codelet> plannigCodeletsList = mind.getCodeletGroupList("Planning");
+                JSoarCodelet foundJSoar = null;
+                PlanSelectionCodelet foundPlanSelection = null;
+                for (Codelet c : plannigCodeletsList) {
+                    if (foundJSoar == null && c instanceof JSoarCodelet) {
+                        foundJSoar = (JSoarCodelet) c;
+                    } else if (foundPlanSelection == null && c instanceof PlanSelectionCodelet) {
+                        foundPlanSelection = (PlanSelectionCodelet) c;
+                    }
+                    if (foundJSoar != null && foundPlanSelection != null) {
+                        break;
+                    }
+                }
+                if (foundJSoar != null) {
+                    plansSubsystemModule.setjSoarCodelet(foundJSoar);
+                }
+                if (foundPlanSelection != null) {
+                    plansSubsystemModule.setPlanSelectionCodelet(foundPlanSelection);
+                }
+                if(plansSubsystemModule.verifyExistCodelets()){
+                    plansSubsystemViewer = new PlansSubsystemViewer(Long.parseLong(txtRefreshTime.getText()), this);
+                    tbControl.add("Plans Subsystem", plansSubsystemViewer);
+                }
+            }
         }
     }
 
